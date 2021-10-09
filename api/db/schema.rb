@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2021_10_08_091643) do
 
   create_table "cards", force: :cascade do |t|
     t.integer "box_id", null: false
-    t.string "color"
+    t.integer "color"
     t.integer "level"
     t.string "from"
     t.string "to"
