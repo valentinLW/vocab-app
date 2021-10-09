@@ -5,6 +5,9 @@ import { Quiz } from "./Quiz";
 
 export function Box({id=1}) {
   const [cards, setCards] = useState([]);
+  const [currentCard, setCurrentCard] = useState({});
+
+  const currentIndex = cards.findIndex(card=> currentCard.id === card.id)
 
   useEffect(() => {
     APIgetBox(id).then(({cards}) => {
@@ -12,18 +15,33 @@ export function Box({id=1}) {
     });
   }, [id])
 
+  const getNextCard = () => {
+    setCurrentCard(cards[Math.floor(Math.random()*cards.length)])
+  }
+
+  const getRandomCard = () => {
+    const num = Math.floor(Math.random() * cards.length);
+    return num === currentIndex ? getRandomCard : num
+  }
+
+  const getRandomWords = () => {
+    const a = []
+    for (var i = 0; i < 3; i++) {
+      a.push(cards[getRandomCard()].to)
+    }
+    return a
+  }
 
   const handleAnswer = (card, correct) => {
-    const index = cards.findIndex((prevCard) => prevCard.id === card.id);
     setCards((prevState) => {
       const a = [...prevState]
-      const prevCard = a[index]
+      const prevCard = a[currentIndex]
 
       const limit = correct ? 5 : 1
       const add = correct ? 1 : - 1
       const newLevel = card.level === limit ? limit : card.level + add
 
-      a[index] = {...prevCard, level: newLevel}
+      a[currentIndex] = {...prevCard, level: newLevel}
       return a
     })
   }
@@ -34,8 +52,9 @@ export function Box({id=1}) {
 
   return (
     <div className="allcards">
-      <Card card={cards[0]}/>
-      <Quiz card={cards[0]} words={cards.slice(1,4).map(w=>w.to)} onAnswer={handleAnswer}/>
+      <button onClick={getNextCard}>Next card</button>
+      <Card card={currentCard}/>
+      <Quiz card={currentCard} words={getRandomWords()} onAnswer={handleAnswer}/>
       </div>
   )
 }
