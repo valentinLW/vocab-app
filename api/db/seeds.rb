@@ -7,7 +7,7 @@ en = %w[time year people way day man thing woman life child world school state f
 
 pt = %w[tempo ano pessoas caminho dia homem coisa mulher vida criança mundo escola estado família estudante grupo país
         problema mão parte lugar caso semana empresa sistema programa pergunta trabalho governo número noite ponto home
-        água sala mãe área dinheiro história fato mês lote à direita estudo livro olho emprego palavra negócios edição
+        água sala mãe área dinheiro história fato mês lote direita estudo livro olho emprego palavra negócios edição
         lado tipo cabeça casa serviço amigo pai energia hora jogo linha fim membro lei carro cidade comunidade nome
         presidente equipe minuto idéia miúdo corpo informações voltar pai face outros nível escritório porta saúde
         pessoa arte guerra história festa resultado mudar manhã razão pesquisa menina gajo momento ar professor força
