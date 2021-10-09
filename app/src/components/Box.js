@@ -38,10 +38,7 @@ export function Box({id=1}) {
     setCards((prevState) => {
       const a = [...prevState]
       const prevCard = a[currentIndex]
-
-      const limit = correct ? 5 : 1
-      const add = correct ? 1 : - 1
-      const newLevel = card.level === limit ? limit : card.level + add
+      const newLevel = correct ? (card.level === 5 ? 5 : card.level + 1 ) : 1
 
       a[currentIndex] = {...prevCard, level: newLevel}
       return a

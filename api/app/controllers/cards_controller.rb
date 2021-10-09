@@ -4,7 +4,7 @@ class CardsController < ApplicationController
     if params[:correct]
       @card.level += 1 unless @card.level == 5
     else
-      @card.level -= 1 unless @card.level == 1
+      @card.level = 1
     end
 
     if @card.save
