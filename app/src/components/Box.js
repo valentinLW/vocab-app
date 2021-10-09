@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { APIgetBox } from "../api/API";
+import { Card } from "./Card";
 
 export function Box({id=1}) {
   const [cards, setCards] = useState([]);
@@ -10,11 +11,13 @@ export function Box({id=1}) {
     });
   }, [id])
 
+  if (cards.length === 0) {
+    return (<h3>Loading...</h3>)
+  }
+
   return (
     <div className="allcards">
-      {cards.map((card) => {
-        return <p>{card?.from}</p>
-      })}
+      <Card card={cards[0]}/>
     </div>
   )
 }
