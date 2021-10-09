@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   scope '/api/v1' do
     get 'boxes', to: 'boxes#index'
     get 'boxes/:id', to: 'boxes#show'
+    patch 'cards/:id', to: 'cards#update'
   end
 end

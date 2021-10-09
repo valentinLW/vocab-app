@@ -8,3 +8,10 @@ export function APIgetBox(id) {
   .then(response => response.data)
   .catch(error => console.log(error))
 }
+
+export function APIupdateCard(id, correct) {
+  const content = {correct: correct}
+  return axios.patch(`${URL}/cards/${id}`, content, HEADERS)
+  .then(response => response.data)
+  .catch(error => console.log(error))
+}

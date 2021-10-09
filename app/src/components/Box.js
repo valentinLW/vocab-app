@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { APIgetBox } from "../api/API";
+import { APIgetBox, APIupdateCard } from "../api/API";
 import { Card } from "./Card";
 import { Quiz } from "./Quiz";
 import { Slots } from "./Slots";
@@ -13,6 +13,7 @@ export function Box({id=1}) {
   useEffect(() => {
     APIgetBox(id).then(({cards}) => {
       setCards(cards);
+      setCurrentCard(cards[Math.floor(Math.random()*cards.length)])
     });
   }, [id])
 
@@ -44,7 +45,10 @@ export function Box({id=1}) {
 
       a[currentIndex] = {...prevCard, level: newLevel}
       return a
-    })
+    });
+    console.log("correct?", correct)
+    APIupdateCard(card.id, correct);
+    getNextCard();
   }
 
   if (cards.length === 0) {
@@ -54,7 +58,6 @@ export function Box({id=1}) {
   return (
     <div className="box">
       <div className="allcards">
-        <button onClick={getNextCard}>Next card</button>
         <Card card={currentCard}/>
         <Quiz card={currentCard} words={getRandomWords()} onAnswer={handleAnswer}/>
       </div>
