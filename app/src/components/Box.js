@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { APIgetBox } from "../api/API";
 import { Card } from "./Card";
 import { Quiz } from "./Quiz";
+import { Slots } from "./Slots";
 
 export function Box({id=1}) {
   const [cards, setCards] = useState([]);
@@ -51,10 +52,13 @@ export function Box({id=1}) {
   }
 
   return (
-    <div className="allcards">
-      <button onClick={getNextCard}>Next card</button>
-      <Card card={currentCard}/>
-      <Quiz card={currentCard} words={getRandomWords()} onAnswer={handleAnswer}/>
+    <div className="box">
+      <div className="allcards">
+        <button onClick={getNextCard}>Next card</button>
+        <Card card={currentCard}/>
+        <Quiz card={currentCard} words={getRandomWords()} onAnswer={handleAnswer}/>
       </div>
+      <Slots cards={cards}/>
+    </div>
   )
 }
