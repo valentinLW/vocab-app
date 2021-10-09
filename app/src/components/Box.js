@@ -23,7 +23,7 @@ export function Box({id=1}) {
 
   const getRandomCard = () => {
     const num = Math.floor(Math.random() * cards.length);
-    return num === currentIndex ? getRandomCard : num
+    return num === currentIndex ? getRandomCard() : num
   }
 
   const getRandomWords = () => {

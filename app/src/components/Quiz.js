@@ -9,9 +9,9 @@ export function Quiz({words, card, onAnswer}) {
   return (
     <div className="quiz">
       <div className="answers">
-        {allWords.map((word) =>
+        {allWords.map((word, i) =>
           <Answer
-            key ={`answer-${word}`}
+            key ={`answer-${i}-${word}`}
             onClick={() => onAnswer(card, word === card.to)}
             answer={word}
             />
