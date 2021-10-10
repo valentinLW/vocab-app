@@ -1,16 +1,19 @@
 import { useState, useEffect } from "react"
-import { APIgetBox, APIupdateCard } from "../api/API";
+import { APIgetBox, APIgetBoxes, APIupdateCard } from "../api/API";
 import { Card } from "./Card";
 import { Queue } from "./Queue";
 import { Quiz } from "./Quiz";
 import { Slots } from "./Slots";
 import '../css/Box.css'
 import { Result } from "./Result";
+import { BoxSelector } from "./BoxSelector";
 
 export function Box({id=1}) {
   const [cards, setCards] = useState([]);
   const [answered, setAnswered] = useState(false);
-  const [randomWords, setRandomWords] = useState([])
+  const [randomWords, setRandomWords] = useState([]);
+  const [boxes, setBoxes] = useState([])
+  const [selectedBox, setSelectedBox] = useState({})
 
   const intervals = [0, 5, 30, 1440, 7200] // static for now
   const queue = cards.filter((c) => {
@@ -25,7 +28,14 @@ export function Box({id=1}) {
     APIgetBox(id).then(({cards}) => {
       setCards(cards);
     });
-  }, [id])
+  }, [id]);
+
+  useEffect(() => {
+    APIgetBoxes().then(({boxes}) => {
+      setBoxes(boxes);
+      setSelectedBox(boxes[0]);
+    });
+  }, [])
 
   const handleAnswer = (correct) => {
     APIupdateCard(currentCard.id, correct);
@@ -75,8 +85,13 @@ export function Box({id=1}) {
     return (<h3>No queue...</h3>)
   }
 
+  const handleSelectBox = (box) => {
+    setSelectedBox(box);
+  }
+
   return (
     <div className="box">
+      <BoxSelector boxes={boxes} selectedBox={selectedBox} onSelectBox={handleSelectBox}/>
       <div className="allcards">
         <Card card={currentCard}/>
         <Quiz card={currentCard} allWords={randomWords} onAnswer={handleAnswer}/>

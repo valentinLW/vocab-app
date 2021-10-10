@@ -9,6 +9,12 @@ export function APIgetBox(id) {
   .catch(error => console.log(error))
 }
 
+export function APIgetBoxes() {
+  return axios.get(`${URL}/boxes/`, HEADERS)
+  .then(response => response.data)
+  .catch(error => console.log(error))
+}
+
 export function APIupdateCard(id, correct) {
   const content = {correct: correct}
   return axios.patch(`${URL}/cards/${id}`, content, HEADERS)
