@@ -6,20 +6,22 @@ import { Slots } from "./Slots";
 
 export function Box({id=1}) {
   const [cards, setCards] = useState([]);
-  const [currentCard, setCurrentCard] = useState({});
 
-  const currentIndex = cards.findIndex(card=> currentCard.id === card.id)
+  const queue = cards.filter((c) => {
+    const minutes = 2;
+    const nextTest = Date.parse(c.updated_at) + minutes*60000;
+    return nextTest <= Date.now()
+  }).sort((a, b) => (a.level > b.level) ? 1 : -1)
+
+  const currentCard = queue[0]
+
+  const currentIndex = cards.findIndex(card => currentCard.id === card.id)
 
   useEffect(() => {
     APIgetBox(id).then(({cards}) => {
       setCards(cards);
-      setCurrentCard(cards[Math.floor(Math.random()*cards.length)])
     });
   }, [id])
-
-  const getNextCard = () => {
-    setCurrentCard(cards[Math.floor(Math.random()*cards.length)])
-  }
 
   const getRandomCard = () => {
     const num = Math.floor(Math.random() * cards.length);
@@ -35,17 +37,18 @@ export function Box({id=1}) {
   }
 
   const handleAnswer = (card, correct) => {
-    setCards((prevState) => {
-      const a = [...prevState]
-      const prevCard = a[currentIndex]
-      const newLevel = correct ? (card.level === 5 ? 5 : card.level + 1 ) : 1
-
-      a[currentIndex] = {...prevCard, level: newLevel}
-      return a
-    });
     console.log("correct?", correct)
     APIupdateCard(card.id, correct);
-    getNextCard();
+    setCards((prevState) => {
+      return prevState.map((prevCard) => {
+        if (prevCard.id === card.id) {
+          const newLevel = correct ? (card.level === 5 ? 5 : card.level + 1 ) : 1
+          return {...card, updated_at: new Date().toLocaleString(), level: newLevel}
+        } else {
+          return prevCard
+        }
+      })
+    })
   }
 
   if (cards.length === 0) {
@@ -55,6 +58,7 @@ export function Box({id=1}) {
   return (
     <div className="box">
       <div className="allcards">
+        <h2>Queue: {queue.length}</h2>
         <Card card={currentCard}/>
         <Quiz card={currentCard} words={getRandomWords()} onAnswer={handleAnswer}/>
       </div>
