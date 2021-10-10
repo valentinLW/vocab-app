@@ -15,7 +15,7 @@ pt = %w[tempo ano pessoas caminho dia homem coisa mulher vida criança mundo esc
 
 b = Box.create!(name: 'english-portugese 1', language: 'en-pt')
 
-en.count.times do |i|
-# 20.times do |i|
-  Card.create!(box: b, level: rand(1..5), from: en[i], to: pt[i], color: rand(1..5))
+#en.count.times do |i|
+3.times do |i|
+  Card.create!(box: b, level: rand(1..5), from: en[i], to: pt[i], color: rand(1..5), language_code:'pt-BR')
 end

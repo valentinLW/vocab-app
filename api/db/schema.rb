@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 2021_10_08_091643) do
     t.integer "level"
     t.string "from"
     t.string "to"
+    t.string "audio"
+    t.string "language_code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["box_id"], name: "index_cards_on_box_id"

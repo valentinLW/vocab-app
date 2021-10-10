@@ -6,6 +6,8 @@ class CreateCards < ActiveRecord::Migration[6.0]
       t.integer :level
       t.string :from
       t.string :to
+      t.string :audio
+      t.string :language_code
 
       t.timestamps
     end
