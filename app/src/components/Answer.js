@@ -22,7 +22,7 @@ export function Answer({word, onAnswer, color, isCorrect}) {
   return (
     <div
       className="answer"
-      onMouseEnter={() => setColorTo(colors[color])}
+      onMouseOver={() => setColorTo(colors[color])}
       onMouseLeave={() => setColorTo("aliceblue")}
       style={{backgroundColor: bgColor}}
       onClick={handleClick}>

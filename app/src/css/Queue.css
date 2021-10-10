@@ -1,28 +1,9 @@
 .queue {
   display: flex;
   align-items:center;
+  padding: 0 2rem;
 }
 
 .queue h3 {
-  margin: 0 3rem;
-}
-
-.queue-cards {
-  display: flex;
-  justify-content: left;
-  overflow-x: hidden;
-  align-items: baseline;
-}
-
-.queue-card {
-  height: 3rem;
-  min-width: 2rem;
-  margin-left: 1px;
-  border-radius: 0.1rem;
-}
-
-.queue-card:first-of-type {
-  margin-left: none;
-  height: 4rem;
-  min-width: 2.666rem;
+  margin-right: 1rem;
 }

@@ -1,16 +1,17 @@
 import '../css/Slots.css'
+import { CardStack } from './CardStack'
 
 export function Slots({cards, intervals}) {
-  const countCards = (level) => {
-    return cards.filter((card) => card.level === level).length
+  const getSlotCards = (level) => {
+    return cards.filter((card) => card.level === level).sort((a, b) => (a.level > b.level) ? 1 : -1)
   }
 
-  const count = [
-    countCards(1),
-    countCards(2),
-    countCards(3),
-    countCards(4),
-    countCards(5),
+  const slotCards = [
+    getSlotCards(1),
+    getSlotCards(2),
+    getSlotCards(3),
+    getSlotCards(4),
+    getSlotCards(5),
   ]
 
   const formatMinutes = (minutes) => {
@@ -29,12 +30,13 @@ export function Slots({cards, intervals}) {
 
   return (
     <div className="slots">
-      {count.map((count, index) => {
+      {slotCards.map((cards, index) => {
         const level = index + 1;
         return (
           <div key={`slot-level-${level}`} className="slot">
             <h3>Level {level}</h3>
-            <p>{count}</p>
+            <p>{cards.length} cards</p>
+            <CardStack cards={cards}/>
             <p>repeat {formatMinutes(intervals[index])}</p>
           </div>
         )
