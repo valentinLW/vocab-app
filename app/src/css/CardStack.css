@@ -9,6 +9,7 @@
   flex-grow: 1;
   margin-left: 1px;
   border-radius: 0.1rem;
+  max-width: 2.5rem;
 }
 
 .stack-card:first-of-type, .active-card {
