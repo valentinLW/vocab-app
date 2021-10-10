@@ -12,8 +12,10 @@ export function Quiz({words, card, onAnswer}) {
         {allWords.map((word, i) =>
           <Answer
             key ={`answer-${i}-${word}`}
-            onClick={() => onAnswer(card, word === card.to)}
-            answer={word}
+            onAnswer={onAnswer}
+            word={word}
+            isCorrect={word === card.to}
+            color={card.color}
             />
           )}
       </div>

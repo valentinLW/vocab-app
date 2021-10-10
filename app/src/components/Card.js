@@ -4,10 +4,10 @@ import '../css/Card.css'
 export function Card({card}) {
   return (
     <div className="card">
-      <din className="card-prompt">
+      <div className="card-prompt">
         <p className="card-question" style={{borderColor: colors[card.color]}}>{card.from}</p>
         <p className="card-language">in portugese</p>
-      </din>
+      </div>
     </div>
   )
 }

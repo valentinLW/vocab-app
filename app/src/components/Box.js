@@ -38,14 +38,14 @@ export function Box({id=1}) {
     return a
   }
 
-  const handleAnswer = (card, correct) => {
+  const handleAnswer = (correct) => {
     console.log("correct?", correct)
-    APIupdateCard(card.id, correct);
+    APIupdateCard(currentCard.id, correct);
     setCards((prevState) => {
       return prevState.map((prevCard) => {
-        if (prevCard.id === card.id) {
-          const newLevel = correct ? (card.level === 5 ? 5 : card.level + 1 ) : 1
-          return {...card, updated_at: new Date().toLocaleString(), level: newLevel}
+        if (prevCard.id === currentCard.id) {
+          const newLevel = correct ? (currentCard.level === 5 ? 5 : currentCard.level + 1 ) : 1
+          return {...currentCard, updated_at: new Date().toLocaleString(), level: newLevel}
         } else {
           return prevCard
         }
