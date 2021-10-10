@@ -1,11 +1,7 @@
 import { Answer } from "./Answer";
 import '../css/Quiz.css'
 
-export function Quiz({words, card, onAnswer}) {
-
-  const randomIndex = Math.floor(Math.random() * 3);
-  const allWords = [...words.slice(0, randomIndex), card.to, ...words.slice(randomIndex)];
-
+export function Quiz({allWords, card, onAnswer}) {
   return (
     <div className="quiz">
       <div className="answers">
