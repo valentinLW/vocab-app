@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
+import { GoUnmute, GoMute } from "react-icons/go";
 
-const useAudio = url => {
+const useAudio = (url, playOnStart=true) => {
   const [audio] = useState(new Audio(url));
-  const [playing, setPlaying] = useState(false);
+  const [playing, setPlaying] = useState(playOnStart);
 
   const toggle = () => setPlaying(!playing);
 
@@ -26,8 +27,9 @@ export function AudioPlayer({ url }) {
   const [playing, toggle] = useAudio(url);
 
   return (
-    <div>
-      <button onClick={toggle}>{playing ? "Pause" : "Play"}</button>
+    <div className="audio-player">
+      {!playing && <GoUnmute onClick={toggle}/>}
+      {playing && <GoMute onClick={toggle}/>}
     </div>
   );
 };

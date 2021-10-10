@@ -5,15 +5,18 @@ import { Queue } from "./Queue";
 import { Quiz } from "./Quiz";
 import { Slots } from "./Slots";
 import '../css/Box.css'
+import { Result } from "./Result";
 
 export function Box({id=1}) {
   const [cards, setCards] = useState([]);
+  const [answered, setAnswered] = useState(false);
 
   const intervals = [0, 5, 30, 1440, 7200] // static for now
-  const queue = cards.filter((c) => {
-    const nextTest = Date.parse(c.updated_at) + intervals[c.level-1]*60000;
-    return nextTest <= Date.now()
-  }).sort((a, b) => (a.level > b.level) ? 1 : -1)
+  // const queue = cards.filter((c) => {
+  //   const nextTest = Date.parse(c.updated_at) + intervals[c.level-1]*60000;
+  //   return nextTest <= Date.now()
+  // }).sort((a, b) => (a.level > b.level) ? 1 : -1)
+  const queue = cards.sort((a, b) => (a.level > b.level) ? 1 : -1)
 
   const currentCard = queue[0]
 
@@ -39,8 +42,12 @@ export function Box({id=1}) {
   }
 
   const handleAnswer = (correct) => {
-    console.log("correct?", correct)
     APIupdateCard(currentCard.id, correct);
+    setAnswered(correct ? "correct" : "incorrect");
+    console.log("correct?", correct)
+  }
+
+  const handleNext = (correct) => {
     setCards((prevState) => {
       return prevState.map((prevCard) => {
         if (prevCard.id === currentCard.id) {
@@ -51,6 +58,7 @@ export function Box({id=1}) {
         }
       })
     })
+    setAnswered(false);
   }
 
   if (cards.length === 0) {
@@ -62,6 +70,7 @@ export function Box({id=1}) {
       <div className="allcards">
         <Card card={currentCard}/>
         <Quiz card={currentCard} words={getRandomWords()} onAnswer={handleAnswer}/>
+        {answered && <Result card={currentCard} onNext={handleNext} isCorrect={answered === "correct"}/>}
       </div>
       <div className="box-visuals">
         <Queue queue={queue}/>

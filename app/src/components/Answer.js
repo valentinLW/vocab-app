@@ -7,9 +7,7 @@ export function Answer({word, onAnswer, color, isCorrect}) {
 
   const handleClick = () => {
     setBgColor(isCorrect ? "green" : "red")
-    setTimeout(() => {
-      onAnswer(isCorrect)
-    }, 1000);
+    onAnswer(isCorrect)
   }
 
   const setColorTo = (color) => {
