@@ -17,13 +17,13 @@ export function Slots({cards, intervals}) {
     if (minutes === 0) {
       return "immediately"
     } else if(minutes < 60) {
-      return `after: ${minutes} ${minutes === 1 ? "minute" : "minutes"}`
+      return `after ${minutes} ${minutes === 1 ? "minute" : "minutes"}`
     } else if (minutes < (60*24)) {
       const hours = minutes/60
-      return `after: ${hours} ${hours === 1 ? "hour" : "hours"}`
+      return `after ${hours} ${hours === 1 ? "hour" : "hours"}`
     } else {
       const days = minutes/60/24
-      return `after: ${days} ${days === 1 ? "day" : "days"}`
+      return `after ${days} ${days === 1 ? "day" : "days"}`
     }
   }
 
@@ -33,7 +33,7 @@ export function Slots({cards, intervals}) {
         const level = index + 1;
         return (
           <div key={`slot-level-${level}`} className="slot">
-            <h3>Level: {level}</h3>
+            <h3>Level {level}</h3>
             <p>{count}</p>
             <p>repeat {formatMinutes(intervals[index])}</p>
           </div>
