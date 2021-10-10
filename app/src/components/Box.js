@@ -9,9 +9,9 @@ import '../css/Box.css'
 export function Box({id=1}) {
   const [cards, setCards] = useState([]);
 
+  const intervals = [0, 5, 30, 1440, 7200] // static for now
   const queue = cards.filter((c) => {
-    const minutes = 2;
-    const nextTest = Date.parse(c.updated_at) + minutes*60000;
+    const nextTest = Date.parse(c.updated_at) + intervals[c.level-1]*60000;
     return nextTest <= Date.now()
   }).sort((a, b) => (a.level > b.level) ? 1 : -1)
 
@@ -60,13 +60,12 @@ export function Box({id=1}) {
   return (
     <div className="box">
       <div className="allcards">
-        <h2>Queue: {queue.length}</h2>
         <Card card={currentCard}/>
         <Quiz card={currentCard} words={getRandomWords()} onAnswer={handleAnswer}/>
       </div>
       <div className="box-visuals">
         <Queue queue={queue}/>
-        <Slots cards={cards}/>
+        <Slots cards={cards} intervals={intervals}/>
       </div>
     </div>
   )
