@@ -3,7 +3,7 @@ import { CardStack } from './CardStack'
 
 export function Slots({cards, intervals}) {
   const getSlotCards = (level) => {
-    return cards.filter((card) => card.level === level).sort((a, b) => (a.level > b.level) ? 1 : -1)
+    return cards.filter((card) => card.level === level).sort((a, b) => (Date.parse(a.updated_at) > Date.parse(b.updated_at)) ? 1 : -1)
   }
 
   const slotCards = [

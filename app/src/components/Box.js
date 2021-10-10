@@ -13,11 +13,11 @@ export function Box({id=1}) {
   const [randomWords, setRandomWords] = useState([])
 
   const intervals = [0, 5, 30, 1440, 7200] // static for now
-  // const queue = cards.filter((c) => {
-  //   const nextTest = Date.parse(c.updated_at) + intervals[c.level-1]*60000;
-  //   return nextTest <= Date.now()
-  // }).sort((a, b) => (a.level > b.level) ? 1 : -1)
-  const queue = cards.sort((a, b) => (Date.parse(a.updated_at) > Date.parse(b.updated_at)) ? 1 : -1)
+  const queue = cards.filter((c) => {
+    const nextTest = Date.parse(c.updated_at) + intervals[c.level-1]*60000;
+    return nextTest <= Date.now()
+  }).sort((a, b) => (Date.parse(a.updated_at) > Date.parse(b.updated_at)) ? 1 : -1)
+  // const queue = cards.sort((a, b) => (Date.parse(a.updated_at) > Date.parse(b.updated_at)) ? 1 : -1)
 
   const currentCard = queue[0]
 
