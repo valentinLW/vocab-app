@@ -1,0 +1,14 @@
+.queue {
+  display: flex;
+  justify-content: center;
+}
+
+.queue-card {
+  height: 2rem;
+  flex-grow: 1;
+  border-left: 1px solid #DDD;
+}
+
+.queue-card:first-of-type {
+  border: none;
+}

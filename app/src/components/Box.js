@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react"
 import { APIgetBox, APIupdateCard } from "../api/API";
 import { Card } from "./Card";
+import { Queue } from "./Queue";
 import { Quiz } from "./Quiz";
 import { Slots } from "./Slots";
+import '../css/Box.css'
 
 export function Box({id=1}) {
   const [cards, setCards] = useState([]);
@@ -62,7 +64,10 @@ export function Box({id=1}) {
         <Card card={currentCard}/>
         <Quiz card={currentCard} words={getRandomWords()} onAnswer={handleAnswer}/>
       </div>
-      <Slots cards={cards}/>
+      <div className="box-visuals">
+        <Queue queue={queue}/>
+        <Slots cards={cards}/>
+      </div>
     </div>
   )
 }
