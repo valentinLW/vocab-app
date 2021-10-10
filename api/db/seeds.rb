@@ -13,8 +13,23 @@ pt = %w[tempo ano pessoas caminho dia homem coisa mulher vida criança mundo esc
         pessoa arte guerra história festa resultado mudar manhã razão pesquisa menina gajo momento ar professor força
         educação]
 
-b = Box.create!(name: 'english-portugese 1', language: 'en-pt')
+de = %w[zeit jahr leute weg tag mann ding frau leben kind welt schule staat familie student gruppe land problem hand
+        teil platz fall woche firma system programm frage arbeit regierung anzahl nacht punkt heim wasser zimmer mutter
+        bereich geld geschichte monat viel rechts studie buch auge job wort business angelegenheit seite art kopf haus
+        service freund vater kraft stunde spiel linie ende mitglied gesetz auto stadt gemeinde name präsident team minute
+        idee kind körper informationen zurück eltern gesicht andere ebene büro tür gesundheit person kunst krieg
+        geschichte party ergebnis ändern morgen grund forschung mädchen kerl moment luft lehrer kraft bildung]
 
-en.count.times do |i|
-  Card.create!(box: b, level: rand(1..5), from: en[i], to: pt[i], color: rand(1..5), language_code: 'pt-BR')
-end
+es = %w[tiempo año gente manera día hombre cosa mujer vida niño mundo escuela estado familia estudiante grupo país
+        problema mano parte lugar caso semana empresa sistema programa pregunta trabajo gobierno número noche punto casa
+        agua habitación madre área dinero historia mes mucho derecho estudio libro ojo trabajo palabra negocio asunto
+        página tipo cabeza casa servicio amigo padre poder hora juego línea fin miembro ley coche ciudad comunidad nombre
+        presidente equipo minuto idea niño cuerpo información espalda padre cara otro nivel oficina puerta salud persona
+        arte guerra historia partido resultado cambio mañana razón investigación chica chico momento aire profesor poder
+        educación]
+
+# b = Box.create!(name: 'deutsch-spanisch 1', language: 'de-es')
+
+# de.count.times do |i|
+#   Card.create!(box: b, level: 1, from: de[i], to: es[i], color: rand(1..5), language_code: 'de-es')
+# end
