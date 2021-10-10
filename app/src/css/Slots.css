@@ -4,9 +4,9 @@
 }
 
 .slot {
-  background-color: beige;
   width: 100%;
   margin: 1rem;
   border-radius: 1rem;
   padding: 1rem 0;
+  border: 2px dashed #DDD;
 }

@@ -1,12 +1,21 @@
 .card {
-  border-radius: 1rem;
   margin: 0 auto;
-  width: fit-content;
   padding: 1rem;
-  font-size: 2rem;
+  font-size: 3rem;
   margin-bottom: 5rem;
 }
 
 .card p {
   margin: 0;
+  display: inline;
+}
+
+.card-question {
+  border-bottom: 3px solid #DDD;
+  padding: 0 0.5rem;
+}
+
+.card-language {
+  padding-left: 0.5rem;
+  color: #777;
 }

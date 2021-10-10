@@ -3,10 +3,11 @@ import '../css/Card.css'
 
 export function Card({card}) {
   return (
-    <div className="card" style={{backgroundColor: colors[card.color]}}>
-      <p className="card-level">{card.level}</p>
-      <p className="card-prompt">Choose the right translation</p>
-      <p className="card-question">{card.from}</p>
+    <div className="card">
+      <din className="card-prompt">
+        <p className="card-question" style={{borderColor: colors[card.color]}}>{card.from}</p>
+        <p className="card-language">in portugese</p>
+      </din>
     </div>
   )
 }
