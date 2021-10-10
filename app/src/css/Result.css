@@ -1,0 +1,59 @@
+.result-wrapper {
+  padding: 1rem 0;
+  margin-top: 2rem;
+}
+
+.result {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.result-boolean {
+  display: flex;
+}
+
+.result-icon {
+  border-radius: 50%;
+  padding: 1rem;
+  color: white;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.result-text {
+  font-size: 2rem;
+  margin-right: 1rem;
+  font-weight: bold;
+}
+
+.continue-button{
+  color: white;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  margin-left: 5rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.correction {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.correction p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.correction-from {
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
