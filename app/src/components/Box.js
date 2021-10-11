@@ -77,12 +77,10 @@ export function Box({id}) {
 
   return (
     <div className="box">
-      <div className="allcards">
-        <Card card={currentCard}/>
-        <Quiz card={currentCard} allWords={randomWords} onAnswer={handleAnswer}/>
-        <div className="result-container">
-          {answered && <Result card={currentCard} onNext={handleNext} isCorrect={answered === "correct"}/>}
-        </div>
+      <Card card={currentCard}/>
+      <Quiz card={currentCard} allWords={randomWords} onAnswer={handleAnswer} answered={answered}/>
+      <div className="result-container">
+        {answered && <Result card={currentCard} onNext={handleNext} isCorrect={answered === "correct"}/>}
       </div>
       <div className="box-visuals">
         <Queue queue={queue}/>
