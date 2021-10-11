@@ -35,7 +35,7 @@ export function Slots({cards, intervals}) {
         return (
           <div key={`slot-level-${level}`} className="slot">
             <h3>Level {level}</h3>
-            <p>{cards.length} {cards.length === 1 ? "card" : "cards"}</p>
+            {/* <p>{cards.length} {cards.length === 1 ? "card" : "cards"}</p> */}
             <CardStack cards={cards}/>
             <p>repeat {formatMinutes(intervals[index])}</p>
           </div>

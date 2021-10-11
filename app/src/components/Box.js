@@ -27,7 +27,7 @@ export function Box({id}) {
   // const queue = cards.sort((a, b) => (Date.parse(a.updated_at) > Date.parse(b.updated_at)) ? 1 : -1)
 
   const currentCard = queue[0]
-  const quizType = bucketSettings[currentCard?.level-1]["type"]
+  const quizType = currentCard?.level ? bucketSettings[currentCard?.level-1]["type"] : null
   const reverse = quizType === "choose-reverse"
 
   useEffect(() => {
@@ -87,7 +87,7 @@ export function Box({id}) {
   return (
     <div className="box">
       <Card card={currentCard} reverse={reverse}/>
-      <Quiz card={currentCard} allCards={randomCards} onAnswer={handleAnswer} answered={answered} reverse={reverse}/>
+      <Quiz card={currentCard} allCards={randomCards} onAnswer={handleAnswer} answered={answered} quizType={quizType}/>
       <div className="result-container">
         {answered && <Result card={currentCard} onNext={handleNext} isCorrect={answered === "correct"}/>}
       </div>
