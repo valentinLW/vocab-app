@@ -3,9 +3,12 @@ import { AudioPlayer } from "./AudioPlayer";
 import '../css/Result.css'
 import { GoCheck, GoX } from "react-icons/go";
 
-export function Result({card, isCorrect, onNext}) {
+export function Result({card, isCorrect, onNext, reverse=false}) {
   const color = isCorrect ? colors["green"] : colors["red"]
   const lightColor = isCorrect ? colors["lightgreen"] : colors["lightred"]
+
+  const fromWord = reverse ? card.to : card.from
+  const toWord = reverse ? card.from : card.to
 
   return (
     <div className="result-wrapper">
@@ -19,8 +22,8 @@ export function Result({card, isCorrect, onNext}) {
       </div>
 
       <div className="correction">
-        <p className="correction-from" style={{color: color}}>{card.from} meaning:</p>
-        <p className="correction-to" style={{color: color}}>{card.to}</p>
+        <p className="correction-from" style={{color: color}}>{fromWord} meaning:</p>
+        <p className="correction-to" style={{color: color}}>{toWord}</p>
       </div>
     </div>
   )

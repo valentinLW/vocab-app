@@ -28,7 +28,7 @@ export function Box({id}) {
 
   const currentCard = queue[0]
   const quizType = currentCard?.level ? bucketSettings[currentCard?.level-1]["type"] : null
-  const reverse = quizType.includes("reverse")
+  const reverse =quizType ? quizType.includes("reverse") : ""
 
   useEffect(() => {
     APIgetBox(id).then(({cards}) => {
@@ -89,7 +89,7 @@ export function Box({id}) {
       <Card card={currentCard} reverse={reverse}/>
       <Quiz card={currentCard} allCards={randomCards} onAnswer={handleAnswer} answered={answered} quizType={quizType}/>
       <div className="result-container">
-        {answered && <Result card={currentCard} onNext={handleNext} isCorrect={answered === "correct"}/>}
+        {answered && <Result card={currentCard} onNext={handleNext} isCorrect={answered === "correct"} reverse={reverse}/>}
       </div>
       <div className="box-visuals">
         <Queue queue={queue}/>

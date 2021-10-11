@@ -6,3 +6,16 @@
   display: flex;
   justify-content: center;
 }
+
+.submit-input {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin-left: 1rem;
+  background-color: aliceblue;
+  border-radius: 1rem;
+  padding: 0 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
