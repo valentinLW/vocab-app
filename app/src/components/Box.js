@@ -10,16 +10,25 @@ import { Result } from "./Result";
 export function Box({id}) {
   const [cards, setCards] = useState([]);
   const [answered, setAnswered] = useState(false);
-  const [randomWords, setRandomWords] = useState([]);
+  const [randomCards, setRandomCards] = useState([]);
 
-  const intervals = [0, 5, 30, 1440, 7200] // static for now
+  // static for now
+  const bucketSettings = [
+    {"interval": 0,"type": "choose"},
+    {"interval": 5,"type": "choose-reverse"},
+    {"interval": 30,"type": "choose"},
+    {"interval": 1440,"type": "choose"},
+    {"interval": 7200,"type": "choose"}]
+
   const queue = cards.filter((c) => {
-    const nextTest = Date.parse(c.updated_at) + intervals[c.level-1]*60000;
+    const nextTest = Date.parse(c.updated_at) + bucketSettings[c.level-1]["interval"]*60000;
     return nextTest <= Date.now()
   }).sort((a, b) => (Date.parse(a.updated_at) > Date.parse(b.updated_at)) ? 1 : -1)
   // const queue = cards.sort((a, b) => (Date.parse(a.updated_at) > Date.parse(b.updated_at)) ? 1 : -1)
 
   const currentCard = queue[0]
+  const quizType = bucketSettings[currentCard?.level-1]["type"]
+  const reverse = quizType === "choose-reverse"
 
   useEffect(() => {
     APIgetBox(id).then(({cards}) => {
@@ -54,17 +63,17 @@ export function Box({id}) {
       return card.id === currentCard.id ? getRandomCard() : card
     }
 
-    const getRandomWords = () => {
+    const getRandomCards = () => {
       const a = []
       for (var i = 0; i < 3; i++) {
-        a.push(getRandomCard().to)
+        a.push(getRandomCard())
       }
       const randomIndex = Math.floor(Math.random() * 3);
-      return [...a.slice(0, randomIndex), currentCard.to, ...a.slice(randomIndex)];
+      return [...a.slice(0, randomIndex), currentCard, ...a.slice(randomIndex)];
     }
 
     if(cards.length === 0) return
-    setRandomWords(getRandomWords);
+    setRandomCards(getRandomCards);
   }, [cards, currentCard])
 
   if (cards.length === 0) {
@@ -77,14 +86,14 @@ export function Box({id}) {
 
   return (
     <div className="box">
-      <Card card={currentCard}/>
-      <Quiz card={currentCard} allWords={randomWords} onAnswer={handleAnswer} answered={answered}/>
+      <Card card={currentCard} reverse={reverse}/>
+      <Quiz card={currentCard} allCards={randomCards} onAnswer={handleAnswer} answered={answered} reverse={reverse}/>
       <div className="result-container">
         {answered && <Result card={currentCard} onNext={handleNext} isCorrect={answered === "correct"}/>}
       </div>
       <div className="box-visuals">
         <Queue queue={queue}/>
-        <Slots cards={cards} intervals={intervals}/>
+        <Slots cards={cards} intervals={bucketSettings.map((s) => s["interval"])}/>
       </div>
     </div>
   )
