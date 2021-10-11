@@ -1,0 +1,8 @@
+.quiz-input {
+  font-size: 2rem;
+}
+
+.quiz-form {
+  display: flex;
+  justify-content: center;
+}

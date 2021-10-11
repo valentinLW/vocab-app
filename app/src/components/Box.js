@@ -14,8 +14,8 @@ export function Box({id}) {
 
   // static for now
   const bucketSettings = [
-    {"interval": 0,"type": "choose"},
-    {"interval": 5,"type": "choose-reverse"},
+    {"interval": 0,"type": "type-reverse"},
+    {"interval": 5,"type": "type-reverse"},
     {"interval": 30,"type": "choose"},
     {"interval": 1440,"type": "choose"},
     {"interval": 7200,"type": "choose"}]
@@ -28,7 +28,7 @@ export function Box({id}) {
 
   const currentCard = queue[0]
   const quizType = currentCard?.level ? bucketSettings[currentCard?.level-1]["type"] : null
-  const reverse = quizType === "choose-reverse"
+  const reverse = quizType.includes("reverse")
 
   useEffect(() => {
     APIgetBox(id).then(({cards}) => {
