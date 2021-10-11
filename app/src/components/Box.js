@@ -11,28 +11,23 @@ export function Box({id}) {
   const [cards, setCards] = useState([]);
   const [answered, setAnswered] = useState(false);
   const [randomCards, setRandomCards] = useState([]);
-
-  // static for now
-  const bucketSettings = [
-    {"interval": 0,"type": "type-reverse"},
-    {"interval": 5,"type": "type-reverse"},
-    {"interval": 30,"type": "choose"},
-    {"interval": 1440,"type": "choose"},
-    {"interval": 7200,"type": "choose"}]
+  const [slots, setSlots] = useState([]);
 
   const queue = cards.filter((c) => {
-    const nextTest = Date.parse(c.updated_at) + bucketSettings[c.level-1]["interval"]*60000;
+    const interval = slots[c.level-1]?.interval || 0
+    const nextTest = Date.parse(c.updated_at) + interval*60000;
     return nextTest <= Date.now()
   }).sort((a, b) => (Date.parse(a.updated_at) > Date.parse(b.updated_at)) ? 1 : -1)
   // const queue = cards.sort((a, b) => (Date.parse(a.updated_at) > Date.parse(b.updated_at)) ? 1 : -1)
 
   const currentCard = queue[0]
-  const quizType = currentCard?.level ? bucketSettings[currentCard?.level-1]["type"] : null
-  const reverse =quizType ? quizType.includes("reverse") : ""
+  const quizType = currentCard?.level ? slots[currentCard?.level-1]?.quiztype : null
+  const reverse = quizType ? quizType.includes("reverse") : ""
 
   useEffect(() => {
-    APIgetBox(id).then(({cards}) => {
+    APIgetBox(id).then(({cards, slots}) => {
       setCards(cards);
+      setSlots(slots);
     });
   }, [id]);
 
@@ -93,7 +88,7 @@ export function Box({id}) {
       </div>
       <div className="box-visuals">
         <Queue queue={queue}/>
-        <Slots cards={cards} intervals={bucketSettings.map((s) => s["interval"])}/>
+        <Slots cards={cards} intervals={slots.map((s) => s.interval)}/>
       </div>
     </div>
   )
