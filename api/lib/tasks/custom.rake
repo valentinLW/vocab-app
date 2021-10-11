@@ -14,4 +14,12 @@ namespace :custom do
       card.save!
     end
   end
+
+  task set_type: :environment do
+    slots = Slot.all
+    slots.each do |slot|
+      slot.quiztype = 'choose'
+      slot.save!
+    end
+  end
 end

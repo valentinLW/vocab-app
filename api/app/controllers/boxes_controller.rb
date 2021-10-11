@@ -7,6 +7,7 @@ class BoxesController < ApplicationController
   def show
     @box = Box.find(params[:id])
     @cards = Card.where(box: @box)
-    render json: { box: @box, cards: @cards }
+    @slots = Slot.where(box: @box)
+    render json: { box: @box, cards: @cards, slots: @slots }
   end
 end

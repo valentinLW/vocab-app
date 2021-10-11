@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_08_091643) do
+ActiveRecord::Schema.define(version: 2021_10_11_132358) do
 
   create_table "boxes", force: :cascade do |t|
     t.string "name"
@@ -32,5 +32,16 @@ ActiveRecord::Schema.define(version: 2021_10_08_091643) do
     t.index ["box_id"], name: "index_cards_on_box_id"
   end
 
+  create_table "slots", force: :cascade do |t|
+    t.integer "order"
+    t.integer "interval"
+    t.string "quiztype"
+    t.integer "box_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["box_id"], name: "index_slots_on_box_id"
+  end
+
   add_foreign_key "cards", "boxes"
+  add_foreign_key "slots", "boxes"
 end
