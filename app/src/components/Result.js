@@ -8,8 +8,8 @@ export function Result({card, isCorrect, onNext}) {
   const lightColor = isCorrect ? colors["lightgreen"] : colors["lightred"]
 
   return (
-    <div className="result-wrapper" style={{backgroundColor: lightColor}}>
-      <div className="result">
+    <div className="result-wrapper">
+      <div className="result" style={{backgroundColor: lightColor}}>
         <div className="result-icon" style={{backgroundColor: color}}>
           {isCorrect ? <GoCheck size={70}/> : <GoX size={70}/>}
         </div>

@@ -1,17 +1,4 @@
-.box {
-  position: relative;
-  height: 100vh;
-}
-
-.box-visuals {
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-}
-
-.allcards {
-  position: absolute;
-  top: 5rem;
-  left: 0;
-  right: 0;
+.result-container {
+  height: 15rem;
+  margin-top: 2rem;
 }
