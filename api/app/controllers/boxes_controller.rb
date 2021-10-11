@@ -10,4 +10,13 @@ class BoxesController < ApplicationController
     @slots = Slot.where(box: @box)
     render json: { box: @box, cards: @cards, slots: @slots }
   end
+
+  def new
+    @box = Box.new(name: params[:name], language: params[:language])
+    if @box.save
+      render json: { box: @box }, status: 200
+    else
+      render json: {}, status: 400
+    end
+  end
 end

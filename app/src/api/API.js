@@ -15,6 +15,13 @@ export function APIgetBoxes() {
   .catch(error => console.log(error))
 }
 
+export function APInewBox(name, language) {
+  const content = {name: name, language: language}
+  return axios.post(`${URL}/boxes/new`, content, HEADERS)
+  .then(response => response.data)
+  .catch(error => console.log(error))
+}
+
 export function APIupdateCard(id, correct) {
   const content = {correct: correct}
   return axios.patch(`${URL}/cards/${id}`, content, HEADERS)

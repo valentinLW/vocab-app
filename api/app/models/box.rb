@@ -3,6 +3,8 @@ DEFAULT_INTERVALS = [0, 5, 30, 1440, 7200]
 class Box < ApplicationRecord
   has_many :cards, dependent: :destroy
   has_many :slots, dependent: :destroy
+  validates :name, presence: true
+  validates :language, presence: true
 
   after_create do
     5.times do |num|

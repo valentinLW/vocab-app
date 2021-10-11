@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import { APIgetBoxes } from "../api/API";
 import { NewBoxForm } from "./NewBoxForm";
 
-export function BoxesManager({}) {
+export function BoxesManager() {
   const [boxes, setBoxes] = useState([]);
 
   useEffect(() => {
