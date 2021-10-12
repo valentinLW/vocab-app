@@ -1,0 +1,19 @@
+.new-box-form {
+  display: flex;
+}
+
+.new-box-form * {
+  margin: 0 0.5rem;
+}
+
+.new-box-form:first-child {
+  margin-left: 0;
+}
+
+.new-box-form p {
+  margin: 0;
+}
+
+.new-box-button {
+  cursor: pointer;
+}
