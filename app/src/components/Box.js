@@ -52,6 +52,7 @@ export function Box({id}) {
   }
 
   useEffect(() => {
+    if(!currentCard) return
     const getRandomCard = () => {
       const num = Math.floor(Math.random() * cards.length);
       const card = cards[num]
@@ -75,14 +76,11 @@ export function Box({id}) {
     return (<h3>Loading...</h3>)
   }
 
-  if(queue.length === 0) {
-    return (<h3>No queue...</h3>)
-  }
-
   return (
     <div className="box">
-      <Card card={currentCard} reverse={reverse}/>
-      <Quiz card={currentCard} allCards={randomCards} onAnswer={handleAnswer} answered={answered} quizType={quizType}/>
+      {currentCard && <Card card={currentCard} reverse={reverse}/>}
+      {currentCard && <Quiz card={currentCard} allCards={randomCards} onAnswer={handleAnswer} answered={answered} quizType={quizType}/>}
+      {!currentCard && <h1 style={{paddingTop: "10rem"}}>No queue, come back later</h1>}
       <div className="result-container">
         {answered && <Result card={currentCard} onNext={handleNext} isCorrect={answered === "correct"} reverse={reverse}/>}
       </div>
