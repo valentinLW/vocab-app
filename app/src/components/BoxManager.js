@@ -4,6 +4,7 @@ import { APIgetBox } from "../api/API";
 import { SlotForm } from "./SlotForm";
 import { GoArrowBoth } from "react-icons/go";
 import { colors } from "../colors"
+import { NewCardForm } from "./NewCardForm";
 
 export function BoxManager() {
   let {id} = useParams()
@@ -35,6 +36,8 @@ export function BoxManager() {
           )
         })}
       </div>
+      <h3>Add Card:</h3>
+      <NewCardForm/>
       <h3>Cards:</h3>
       <div className="cards-list">
         {box.cards.map((card) => {

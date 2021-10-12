@@ -1,0 +1,8 @@
+.new-card-form {
+  display: flex;
+}
+
+.card-submit-button {
+  padding: 0.5rem;
+  cursor: pointer;
+}
