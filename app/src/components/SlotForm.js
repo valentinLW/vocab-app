@@ -1,8 +1,11 @@
 import { useState } from "react"
+import { APIupdateSlot } from "../api/API";
 
 export function SlotForm({slot}) {
   const [quizType, setQuizType] = useState(slot.quiztype);
   const handleChange = ({target}) => {
+    APIupdateSlot(slot.id, target.value);
+    console.log(slot)
     setQuizType(target.value);
   }
 

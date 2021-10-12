@@ -26,7 +26,7 @@ export function BoxManager() {
         <h3>Slots:</h3>
         {box.slots.map((slot) => {
           return (
-            <div className="slot-list-slot">
+            <div key={`slot-${slot.order}`} className="slot-list-slot">
               <div>Level: {slot.order}</div>
               <SlotForm slot={slot} />
             </div>
