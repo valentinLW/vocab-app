@@ -11,12 +11,19 @@ export function BoxManager() {
   let {id} = useParams()
   id = parseInt(id)
   const [box, setBox] = useState(null)
+  const [cards, setCards] = useState([])
 
   useEffect(() => {
     APIgetBox(id).then((res) => {
-      setBox(res);
+      const { cards, ...box } = res
+      setBox(box);
+      setCards(cards);
     });
-  }, [id])
+  }, [id]);
+
+  const handleNewCard = (card) => {
+    setCards((prevState) => [...prevState, card])
+  }
 
   if(box === null) {
     return(<h1>Loading...</h1>)
@@ -39,10 +46,10 @@ export function BoxManager() {
         })}
       </div>
       <h3>Add Card:</h3>
-      <NewCardForm boxId={id}/>
+      <NewCardForm boxId={id} onNewCard={handleNewCard}/>
       <h3>Cards:</h3>
       <div className="cards-list">
-        {box.cards.map((card) => {
+        {cards.map((card) => {
           return (
             <div key={`card-${card.id}`} className="card-list-card" style={{backgroundColor: colors[card.color]}}>
               <p>{card.from}</p>

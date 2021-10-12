@@ -3,7 +3,7 @@ import { GoPlus } from "react-icons/go";
 import { APInewCard } from "../api/API";
 import '../css/NewCardForm.css'
 
-export function NewCardForm({boxId}) {
+export function NewCardForm({boxId, onNewCard}) {
   const [from, setFrom] = useState("");
   const handleFromChange = ({target}) => {
     setFrom(target.value)
@@ -17,7 +17,7 @@ export function NewCardForm({boxId}) {
   const handleSubmit = (e) => {
     e.preventDefault();
     APInewCard(boxId, from, to).then((card) => {
-      console.log(card)
+      onNewCard(card);
     })
   }
 
