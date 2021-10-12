@@ -10,20 +10,3 @@
 .box-manage-link {
   margin-left: 1rem;
 }
-
-.cards-list {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.card-list-card {
-  width: 10vw;
-  text-align: center;
-  margin: 0.25rem;
-  border-radius: 0.25rem;
-  padding: 0.25rem 0;
-}
-
-.cards-list p {
-  margin: 0;
-}

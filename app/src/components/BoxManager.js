@@ -5,6 +5,7 @@ import { SlotForm } from "./SlotForm";
 import { GoArrowBoth } from "react-icons/go";
 import { colors } from "../colors"
 import { NewCardForm } from "./NewCardForm";
+import '../css/BoxManager.css'
 
 export function BoxManager() {
   let {id} = useParams()
@@ -24,9 +25,10 @@ export function BoxManager() {
   return(
     <div>
       <h1>{box.box.name}</h1>
-      <h3>language: {box.box.language}</h3>
+      <h3>language:</h3>
+      <h4>{box.box.language}</h4>
+      <h3>Slots:</h3>
       <div className="slot-list">
-        <h3>Slots:</h3>
         {box.slots.map((slot) => {
           return (
             <div key={`slot-${slot.order}`} className="slot-list-slot">
