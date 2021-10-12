@@ -29,8 +29,7 @@ export function APIupdateCard(id, correct) {
   .catch(error => console.log(error))
 }
 
-export function APIupdateSlot(id, quiztype) {
-  const content = {quiztype: quiztype}
+export function APIupdateSlot(id, content) {
   return axios.patch(`${URL}/slots/${id}`, content, HEADERS)
   .then(response => response.data)
   .catch(error => console.log(error))
