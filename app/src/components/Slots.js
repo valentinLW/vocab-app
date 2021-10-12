@@ -1,9 +1,16 @@
 import '../css/Slots.css'
 import { CardStack } from './CardStack'
+import { GoInfo } from 'react-icons/go'
+import { useState } from 'react'
 
-export function Slots({cards, intervals}) {
+export function Slots({cards, intervals, quiztypes}) {
   const getSlotCards = (level) => {
     return cards.filter((card) => card.level === level).sort((a, b) => (Date.parse(a.updated_at) > Date.parse(b.updated_at)) ? 1 : -1)
+  }
+
+  const [showInfo, setShowInfo] = useState(false);
+  const toggleInfo = () => {
+    setShowInfo((prevState) => !prevState)
   }
 
   const slotCards = [
@@ -34,10 +41,21 @@ export function Slots({cards, intervals}) {
         const level = index + 1;
         return (
           <div key={`slot-level-${level}`} className="slot">
-            <h3>Level {level}</h3>
-            {/* <p>{cards.length} {cards.length === 1 ? "card" : "cards"}</p> */}
-            <CardStack cards={cards}/>
-            <p>repeat {formatMinutes(intervals[index])}</p>
+            <div className="slot-header">
+              <h3>Level {level}</h3>
+              <GoInfo size={20} onClick={toggleInfo}/>
+            </div>
+            <div style={{position: "relative"}}>
+              <div style={{filter: showInfo ? "blur(5px)" : ""}}>
+                <CardStack cards={cards}/>
+                <p>repeat {formatMinutes(intervals[index])}</p>
+              </div>
+              <div style={{opacity: showInfo ? 100 : 0, position: "absolute", top:-10, left:0, right:0}}>
+                <p>{cards.length} cards</p>
+                <p>repeat {formatMinutes(intervals[index])}</p>
+                <p>Quiz type: {quiztypes[index]}</p>
+              </div>
+            </div>
           </div>
         )
       })}

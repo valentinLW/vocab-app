@@ -86,7 +86,7 @@ export function Box({id}) {
       </div>
       <div className="box-visuals">
         <Queue queue={queue}/>
-        <Slots cards={cards} intervals={slots.map((s) => s.interval)}/>
+        <Slots cards={cards} intervals={slots.map((s) => s.interval)} quiztypes={slots.map((s) => s.quiztype)}/>
       </div>
     </div>
   )
