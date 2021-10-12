@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { GoPlus } from "react-icons/go";
+import { APInewCard } from "../api/API";
 import '../css/NewCardForm.css'
 
-export function NewCardForm() {
+export function NewCardForm({boxId}) {
   const [from, setFrom] = useState("");
   const handleFromChange = ({target}) => {
     setFrom(target.value)
@@ -15,6 +16,9 @@ export function NewCardForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    APInewCard(boxId, from, to).then((card) => {
+      console.log(card)
+    })
   }
 
   return (

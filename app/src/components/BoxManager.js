@@ -39,7 +39,7 @@ export function BoxManager() {
         })}
       </div>
       <h3>Add Card:</h3>
-      <NewCardForm/>
+      <NewCardForm boxId={id}/>
       <h3>Cards:</h3>
       <div className="cards-list">
         {box.cards.map((card) => {

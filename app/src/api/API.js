@@ -22,6 +22,15 @@ export function APInewBox(name, language) {
   .catch(error => console.log(error))
 }
 
+export function APInewCard(boxId, from, to) {
+  const content = {box_id: boxId, from: from, to: to}
+  return axios.post(`${URL}/cards/new`, content, HEADERS)
+  .then(response => {
+    console.log(response.data)
+    return response.data})
+  .catch(error => console.log(error))
+}
+
 export function APIupdateCard(id, correct) {
   const content = {correct: correct}
   return axios.patch(`${URL}/cards/${id}`, content, HEADERS)

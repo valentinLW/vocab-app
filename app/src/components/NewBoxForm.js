@@ -6,12 +6,12 @@ import { GoPlus } from "react-icons/go";
 
 export function NewBoxForm(params) {
   const history = useHistory()
-  const [name, setName] = useState("")
+  const [name, setName] = useState("de")
   const handleNameChange = ({target}) => {
     setName(target.value);
   }
 
-  const [to, setTo] = useState("")
+  const [to, setTo] = useState("en")
   const handleToChange = ({target}) => {
     setTo(target.value);
   }

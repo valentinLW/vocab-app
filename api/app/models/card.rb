@@ -8,6 +8,16 @@ AWS_SETTINGS = {
     name: 'Lupe',
     engine: 'neural',
     langcode: 'es-US'
+  },
+  'en' => {
+    name: 'Joanna',
+    engine: 'neural',
+    langcode: 'en-US'
+  },
+  'de' => {
+    name: 'Vicki',
+    engine: 'neural',
+    langcode: 'de-DE'
   }
 }
 

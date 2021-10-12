@@ -16,14 +16,19 @@ class CardsController < ApplicationController
 
   def new
     @box = Box.find(params[:box_id])
-    @card = Card.create!(
-      language_code: params[:language_code],
+    @card = Card.new(
+      language_code: @box.language,
       box: @box,
       from: params[:from],
       to: params[:to],
       color: rand(1..5),
       level: 1
     )
-    render json: { card: @card }
+
+    if @card.save
+      render json: @card, status: 200
+    else
+      render json: {:errors => @card.errors.full_messages}, status: 400
+    end
   end
 end

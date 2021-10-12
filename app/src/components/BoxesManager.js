@@ -20,7 +20,7 @@ export function BoxesManager() {
       <h4>Your boxes</h4>
       {boxes.map((box) => {
         return(
-          <div className="box-list-box">
+          <div key={`box-${box.id}`} className="box-list-box">
             <Link to={`/boxes/${box.id}`}>{box.name}</Link>
             <Link to={`/boxes/${box.id}/manage`} className="box-manage-link"><GoGear/></Link>
           </div>
