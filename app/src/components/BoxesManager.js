@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react"
-import { APIgetBoxes } from "../api/API";
+import { APIdeleteBox, APIgetBoxes } from "../api/API";
 import { NewBoxForm } from "./NewBoxForm";
-import { GoGear } from "react-icons/go";
+import { GoGear, GoTrashcan } from "react-icons/go";
 import '../css/BoxesManager.css'
 
 export function BoxesManager() {
@@ -13,6 +13,12 @@ export function BoxesManager() {
       setBoxes(boxes);
     });
   }, [])
+
+  const handleDeleteBox = (id) => {
+    APIdeleteBox(id);
+    setBoxes((prevState) => prevState.filter((box) => box.id !== id));
+  }
+
   return (
     <div className="boxes-list">
        <h4>Add box</h4>
@@ -23,6 +29,7 @@ export function BoxesManager() {
           <div key={`box-${box.id}`} className="box-list-box">
             <Link to={`/boxes/${box.id}`}>{box.name}</Link>
             <Link to={`/boxes/${box.id}/manage`} className="box-manage-link"><GoGear/></Link>
+            <GoTrashcan onClick={ ()=> handleDeleteBox(box.id)}/>
           </div>
         )
       })}

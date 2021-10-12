@@ -19,4 +19,13 @@ class BoxesController < ApplicationController
       render json: {}, status: 400
     end
   end
+
+  def delete
+    @box = Box.find(params[:id])
+    if @box.destroy
+      render json: {}, status: 200
+    else
+      render json: {}, status: 400
+    end
+  end
 end

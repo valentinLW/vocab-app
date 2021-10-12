@@ -22,6 +22,12 @@ export function APInewBox(name, language) {
   .catch(error => console.log(error))
 }
 
+export function APIdeleteBox(id) {
+  return axios.delete(`${URL}/boxes/${id}`, HEADERS)
+  .then(response => response.data)
+  .catch(error => console.log(error))
+}
+
 export function APInewCard(boxId, from, to) {
   const content = {box_id: boxId, from: from, to: to}
   return axios.post(`${URL}/cards/new`, content, HEADERS)
