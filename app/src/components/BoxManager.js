@@ -5,6 +5,7 @@ import { SlotForm } from "./SlotForm";
 import { GoArrowBoth } from "react-icons/go";
 import { colors } from "../colors"
 import { NewCardForm } from "./NewCardForm";
+import { BatchNewCards } from "./BatchNewCards";
 import '../css/BoxManager.css'
 
 export function BoxManager() {
@@ -47,6 +48,7 @@ export function BoxManager() {
       </div>
       <h3>Add Card:</h3>
       <NewCardForm boxId={id} onNewCard={handleNewCard}/>
+      <BatchNewCards />
       <h3>Cards:</h3>
       <div className="cards-list">
         {cards.map((card) => {
