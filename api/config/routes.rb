@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     delete 'boxes/:id', to: 'boxes#delete'
     patch 'cards/:id', to: 'cards#update'
     post 'cards/new', to: 'cards#new'
+    post 'cards/new_batch', to: 'cards#new_batch'
     patch 'slots/:id', to: 'slots#update'
   end
 end

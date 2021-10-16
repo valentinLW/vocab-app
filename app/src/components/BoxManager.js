@@ -26,6 +26,10 @@ export function BoxManager() {
     setCards((prevState) => [...prevState, card])
   }
 
+  const handleNewCards = (cards) => {
+    setCards((prevState) => [...prevState, ...cards])
+  }
+
   if(box === null) {
     return(<h1>Loading...</h1>)
   }
@@ -48,7 +52,7 @@ export function BoxManager() {
       </div>
       <h3>Add Card:</h3>
       <NewCardForm boxId={id} onNewCard={handleNewCard}/>
-      <BatchNewCards />
+      <BatchNewCards boxId={id} onNewCards={handleNewCards}/>
       <h3>Cards:</h3>
       <div className="cards-list">
         {cards.map((card) => {

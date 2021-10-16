@@ -37,6 +37,15 @@ export function APInewCard(boxId, from, to) {
   .catch(error => console.log(error))
 }
 
+export function APInewCardBatch(boxId, csv) {
+  const content = {box_id: boxId, csv: csv}
+  return axios.post(`${URL}/cards/new_batch`, content, HEADERS)
+  .then(response => {
+    console.log(response.data)
+    return response.data})
+  .catch(error => console.log(error))
+}
+
 export function APIupdateCard(id, correct) {
   const content = {correct: correct}
   return axios.patch(`${URL}/cards/${id}`, content, HEADERS)

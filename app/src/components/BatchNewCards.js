@@ -1,10 +1,17 @@
-export function BatchNewCards(params) {
+import { APInewCardBatch } from "../api/API";
+
+export function BatchNewCards({boxId, onNewCards}) {
 
   const onChangeHandler = ({target}) => {
     const fileReader = new FileReader();
     fileReader.readAsText(target.files[0], "UTF-8");
     fileReader.onload = e => {
-      console.log(JSON.parse(e.target.result));
+    const csv = e.target.result
+    APInewCardBatch(boxId, csv).then(({cards}) => {
+      if (cards.length > 0) {
+        onNewCards(cards);
+      }
+    })
     };
   }
 
