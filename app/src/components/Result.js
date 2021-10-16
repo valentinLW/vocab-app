@@ -2,8 +2,23 @@ import { colors } from "../colors"
 import { AudioPlayer } from "./AudioPlayer";
 import '../css/Result.css'
 import { GoCheck, GoX } from "react-icons/go";
+import { useEffect } from "react";
 
 export function Result({card, isCorrect, onNext, reverse=false}) {
+
+  useEffect(() => {
+    const onKeyDown = ({keyCode}) => {
+      if(keyCode === 13) {
+        onNext(isCorrect);
+      }
+    }
+    document.addEventListener('keydown', onKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+    }
+  })
+
   const color = isCorrect ? colors["green"] : colors["red"]
   const lightColor = isCorrect ? colors["lightgreen"] : colors["lightred"]
 
