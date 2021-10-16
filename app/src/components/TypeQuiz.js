@@ -19,7 +19,7 @@ export function TypeQuiz({answered=false, reverse=false, onAnswer, card}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(answered) return;
+    if(answered || input === "") return;
     onAnswer(answer === input);
   }
 
