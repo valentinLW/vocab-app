@@ -6,6 +6,8 @@ import { Quiz } from "./Quiz";
 import { Slots } from "./Slots";
 import '../css/Box.css'
 import { Result } from "./Result";
+import { GoGear } from "react-icons/go";
+import { Link } from "react-router-dom";
 
 export function Box({id}) {
   const [cards, setCards] = useState([]);
@@ -78,6 +80,9 @@ export function Box({id}) {
 
   return (
     <div className="box">
+      <Link to={`/boxes/${id}/manage`} className="box-manage-link">
+        <GoGear size={40} />
+      </Link>
       {currentCard && <Card card={currentCard} reverse={reverse}/>}
       {currentCard && <Quiz card={currentCard} allCards={randomCards} onAnswer={handleAnswer} answered={answered} quizType={quizType}/>}
       {!currentCard && <h1 style={{paddingTop: "10rem"}}>No queue, come back later</h1>}
