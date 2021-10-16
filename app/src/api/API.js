@@ -32,7 +32,6 @@ export function APInewCard(boxId, from, to) {
   const content = {box_id: boxId, from: from, to: to}
   return axios.post(`${URL}/cards/new`, content, HEADERS)
   .then(response => {
-    console.log(response.data)
     return response.data})
   .catch(error => console.log(error))
 }
@@ -41,7 +40,6 @@ export function APInewCardBatch(boxId, csv) {
   const content = {box_id: boxId, csv: csv}
   return axios.post(`${URL}/cards/new_batch`, content, HEADERS)
   .then(response => {
-    console.log(response.data)
     return response.data})
   .catch(error => console.log(error))
 }

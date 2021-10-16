@@ -12,7 +12,7 @@ export function SlotForm({slot}) {
   const [interval, setInterval] = useState(slot.interval);
   const handleIntervalChange = ({target}) => {
     const num = target.value;
-    APIupdateSlot(slot.id, {interval: num}).then((r) => console.log(r));
+    APIupdateSlot(slot.id, {interval: num});
     setInterval(num);
   }
 

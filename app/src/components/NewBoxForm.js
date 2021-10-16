@@ -26,7 +26,6 @@ export function NewBoxForm(params) {
     e.preventDefault();
     const language = `${from}-${to}`
     APInewBox(name, language).then(({box}) => {
-      console.log(box)
       history.push(`/boxes/${box.id}/manage`)
     });
   }
