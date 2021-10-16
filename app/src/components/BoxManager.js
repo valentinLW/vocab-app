@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react"
 import { APIgetBox } from "../api/API";
 import { SlotForm } from "./SlotForm";
@@ -36,7 +36,9 @@ export function BoxManager() {
 
   return(
     <div>
-      <h1>{box.box.name}</h1>
+      <Link to={`/boxes/${id}`}>
+        <h1>{box.box.name}</h1>
+      </Link>
       <h3>language:</h3>
       <h4>{box.box.language}</h4>
       <h3>Slots:</h3>
@@ -52,6 +54,7 @@ export function BoxManager() {
       </div>
       <h3>Add Card:</h3>
       <NewCardForm boxId={id} onNewCard={handleNewCard}/>
+      <h3>Add Cards from csv:<span style={{color: "#777777", marginLeft: "0.5rem"}}>(delimiter ';' one card per line)</span></h3>
       <BatchNewCards boxId={id} onNewCards={handleNewCards}/>
       <h3>Cards:</h3>
       <div className="cards-list">
