@@ -8,7 +8,7 @@ class CardsController < ApplicationController
     end
 
     interval = Slot.find_by(box: @card.box, order: @card.level).interval
-    @card.next_test += interval.minute
+    @card.next_test = Time.zone.now + interval.minute
 
     if @card.save
       render json: @card, status: 200

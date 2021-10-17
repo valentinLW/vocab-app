@@ -11,7 +11,18 @@ export function APIgetBox(id) {
 
 export function APIgetBoxes() {
   return axios.get(`${URL}/boxes/`, HEADERS)
-  .then(response => response.data)
+  .then(response => {
+    return { boxes:
+      response.data.boxes.map((b) => {
+        const bCount = response.data.counts[b.id]
+        if(bCount) {
+          return {...b, count: bCount}
+        } else {
+          return {...b, count: 0}
+        }
+      }
+    )}
+  })
   .catch(error => console.log(error))
 }
 

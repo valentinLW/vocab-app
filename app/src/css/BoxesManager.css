@@ -5,8 +5,25 @@
 
 .box-list-box {
   margin: 1rem 0;
+  display: flex;
+}
+
+.box-list-box > * {
+  margin: 0 0.5rem;
+}
+
+.box-list-box:nth-child(1) {
+  margin: 0;
 }
 
 .box-manage-link {
   margin-left: 1rem;
+}
+
+.boxes-list-box-link {
+  display: flex;
+}
+
+.boxes-list-box-link p {
+  margin: 0 0.5rem;
 }

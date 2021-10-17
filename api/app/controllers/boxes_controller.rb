@@ -1,7 +1,8 @@
 class BoxesController < ApplicationController
   def index
     @boxes = Box.all
-    render json: { boxes: @boxes }
+    card_count = Card.where('next_test <= ?', Time.zone.now).group(:box_id).count
+    render json: { boxes: @boxes, counts: card_count }
   end
 
   def show

@@ -27,8 +27,8 @@ export function BoxesManager() {
       {boxes.map((box) => {
         return(
           <div key={`box-${box.id}`} className="box-list-box">
-            <Link to={`/boxes/${box.id}`}>{box.name}</Link>
-            <Link to={`/boxes/${box.id}/manage`} className="box-manage-link"><GoGear/></Link>
+            <Link to={`/boxes/${box.id}`} className="boxes-list-box-link"><p>{box.count}</p>{box.name}</Link>
+            <Link to={`/boxes/${box.id}/manage`} className="boxes-list-manage-link"><GoGear/></Link>
             <GoTrashcan onClick={ ()=> handleDeleteBox(box.id)}/>
           </div>
         )
