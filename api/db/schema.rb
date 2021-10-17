@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_11_132358) do
+ActiveRecord::Schema.define(version: 2021_10_17_104708) do
 
   create_table "boxes", force: :cascade do |t|
     t.string "name"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2021_10_11_132358) do
     t.string "language_code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "next_test", default: "2021-10-17 10:48:31"
     t.index ["box_id"], name: "index_cards_on_box_id"
   end
 
