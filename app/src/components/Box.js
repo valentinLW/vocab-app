@@ -16,10 +16,13 @@ export function Box({id}) {
   const [slots, setSlots] = useState([]);
 
   const queue = cards.filter((c) => {
-    const interval = slots[c.level-1]?.interval || 0
-    const nextTest = Date.parse(c.updated_at) + interval*60000;
-    return nextTest <= Date.now()
-  }).sort((a, b) => (Date.parse(a.updated_at) > Date.parse(b.updated_at)) ? 1 : -1)
+    // console.log(
+    //   c.from,
+    //   new Date(Date.parse(c.next_test)).toLocaleTimeString('de-DE', { hour: 'numeric', minute: 'numeric' }),
+    //   new Date(Date.now()).toLocaleTimeString('de-DE', { hour: 'numeric', minute: 'numeric' })
+    // )
+    return Date.parse(c.next_test) <= Date.now()}
+  ).sort((a, b) => (Date.parse(a.updated_at) > Date.parse(b.updated_at)) ? 1 : -1)
   // const queue = cards.sort((a, b) => (Date.parse(a.updated_at) > Date.parse(b.updated_at)) ? 1 : -1)
   const currentCard = queue[0]
   const quizType = currentCard?.level ? slots[currentCard?.level-1]?.quiztype : null
@@ -42,7 +45,9 @@ export function Box({id}) {
       return prevState.map((prevCard) => {
         if (prevCard.id === currentCard.id) {
           const newLevel = correct ? (currentCard.level === 5 ? 5 : currentCard.level + 1 ) : 1
-          return {...currentCard, updated_at: new Date(Date.now()).toString(), level: newLevel}
+          const interval = slots[newLevel-1].interval
+          const nextTest = new Date(Date.now() + interval*60000).toString()
+          return {...currentCard, updated_at: new Date(Date.now()).toString(), next_test: nextTest, level: newLevel}
         } else {
           return prevCard
         }
