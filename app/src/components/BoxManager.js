@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react"
 import { APIgetBox } from "../api/API";
 import { SlotForm } from "./SlotForm";
-import { GoArrowBoth, GoLinkExternal } from "react-icons/go";
+import { GoArrowBoth, GoLinkExternal, GoListUnordered } from "react-icons/go";
 import { colors } from "../colors"
 import { NewCardForm } from "./NewCardForm";
 import { BatchNewCards } from "./BatchNewCards";
@@ -36,10 +36,13 @@ export function BoxManager() {
 
   return(
     <div className="box-manager">
-      <div className="box-manager-game-link">
+      <div className="box-manager-links">
+        <Link to={`/boxes/`} className="box-home-link">
+          <GoListUnordered size="2rem" />
+        </Link>
         <h1>{box.box.name}</h1>
         <Link to={`/boxes/${id}`}>
-          <GoLinkExternal size={30}/>
+          <GoLinkExternal size="2rem"/>
         </Link>
       </div>
       <h3>Language: {box.box.language}</h3>

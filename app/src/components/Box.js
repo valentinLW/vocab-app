@@ -85,10 +85,10 @@ export function Box({id}) {
     <div className="box">
       <div className="box-links">
         <Link to={`/boxes/`} className="box-home-link">
-          <GoListUnordered size={40} />
+          <GoListUnordered size="2rem" />
         </Link>
         <Link to={`/boxes/${id}/manage`} className="box-manage-link">
-          <GoGear size={40} />
+          <GoGear size="2rem" />
         </Link>
       </div>
       <div className="box-game">

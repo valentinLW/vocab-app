@@ -2,13 +2,10 @@
   margin: 0 10rem;
 }
 
-.box-manager-game-link {
+.box-manager-links {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-}
-
-.box-manager-game-link > *{
-  margin-right: 1rem;
 }
 
 .box-manager-language {
@@ -55,7 +52,7 @@
     margin: 0 1rem;
   }
 
-  .box-manager-game-link h1 {
+  .box-manager-links h1 {
     font-size: 1.5rem;
   }
 
