@@ -19,3 +19,15 @@
   font-weight: bold;
   cursor: pointer;
 }
+
+@media only screen and (max-width: 600px) {
+  .quiz-form {
+    flex-direction: column;
+    padding: 0 0.5rem;
+  }
+  .submit-input {
+    padding: 1rem;
+    margin: 0 auto;
+    margin-top: 1rem;
+  }
+}

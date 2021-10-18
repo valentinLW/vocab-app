@@ -83,17 +83,21 @@ export function Box({id}) {
 
   return (
     <div className="box">
-      <Link to={`/boxes/${id}/manage`} className="box-manage-link">
-        <GoGear size={40} />
-      </Link>
-      <Link to={`/boxes/`} className="box-home-link">
-        <GoListUnordered size={40} />
-      </Link>
-      {currentCard && <Card card={currentCard} reverse={reverse}/>}
-      {currentCard && <Quiz card={currentCard} allCards={randomCards} onAnswer={handleAnswer} answered={answered} quizType={quizType}/>}
-      {!currentCard && <h1 style={{paddingTop: "10rem"}}>No queue, come back later</h1>}
-      <div className="result-container">
-        {( currentCard && answered) && <Result card={currentCard} onNext={handleNext} isCorrect={answered === "correct"} reverse={reverse}/>}
+      <div className="box-links">
+        <Link to={`/boxes/`} className="box-home-link">
+          <GoListUnordered size={40} />
+        </Link>
+        <Link to={`/boxes/${id}/manage`} className="box-manage-link">
+          <GoGear size={40} />
+        </Link>
+      </div>
+      <div className="box-game">
+        {currentCard && <Card card={currentCard} reverse={reverse}/>}
+        {currentCard && <Quiz card={currentCard} allCards={randomCards} onAnswer={handleAnswer} answered={answered} quizType={quizType}/>}
+        {!currentCard && <h1 style={{paddingTop: "10rem"}}>No queue, come back later</h1>}
+        <div className="result-container">
+          {( currentCard && answered) && <Result card={currentCard} onNext={handleNext} isCorrect={answered === "correct"} reverse={reverse}/>}
+        </div>
       </div>
       <div className="box-visuals">
         <Queue queue={queue}/>

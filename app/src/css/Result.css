@@ -30,7 +30,7 @@
   font-weight: bold;
 }
 
-.continue-button{
+.continue-button {
   color: white;
   font-weight: bold;
   padding: 0.5rem 1rem;
@@ -56,4 +56,10 @@
 .correction-from {
   font-weight: bold;
   margin-right: 0.5rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .continue-button {
+    margin-left: 0;
+  }
 }

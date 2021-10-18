@@ -3,27 +3,24 @@
 }
 
 .box {
-  flex-grow: 1;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-.box-visuals {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+.box-links {
+  display: flex;
+  justify-content: space-between;
+}
+
+.box-game {
+  flex-grow: 1;
 }
 
 .box-manage-link {
-  position: absolute;
-  top: 0;
-  right: 0;
   margin: 2rem;
 }
 
 .box-home-link {
-  position: absolute;
-  top: 0;
-  left: 0;
   margin: 2rem;
 }
