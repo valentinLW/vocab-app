@@ -21,11 +21,10 @@
 }
 
 .card-list-card {
-  width: 10vw;
   text-align: center;
   margin: 0.25rem;
   border-radius: 0.25rem;
-  padding: 0.25rem 0;
+  padding: 0.25rem 1rem;
   flex-grow: 1;
 }
 
@@ -38,6 +37,10 @@
   justify-content: space-around;
 }
 
+.slot-list-label {
+  font-weight: bold;
+}
+
 .slot-list-label-level {
   margin: 0;
   margin-top: 0.25rem;
@@ -45,4 +48,29 @@
 
 .slot-list-label-select {
   margin: 0;
+}
+
+@media only screen and (max-width: 600px) {
+  .box-manager {
+    margin: 0 1rem;
+  }
+
+  .box-manager-game-link h1 {
+    font-size: 1.5rem;
+  }
+
+  .slot-list-label {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 0.5rem;
+  }
+
+  .slot-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .slot-list input {
+    width: 4rem;
+  }
 }

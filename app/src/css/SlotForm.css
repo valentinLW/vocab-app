@@ -7,3 +7,11 @@
   text-align: center;
   margin: 0.25rem 0;
 }
+
+@media only screen and (max-width: 600px) {
+  .slot-form {
+    flex-direction: row;
+    justify-content: right;
+    justify-content: space-around;
+  }
+}

@@ -46,9 +46,9 @@ export function BoxManager() {
       <h3>Slots:</h3>
       <div className="slot-list">
         <div className="slot-list-label">
-          <p className="slot-list-label-level">slot:</p>
-          <p className="slot-list-label-select">quiz type:</p>
-          <p className="slot-list-label-select">repeat after:</p>
+          <p className="slot-list-label-level">slot</p>
+          <p className="slot-list-label-select">quiz type</p>
+          <p className="slot-list-label-select">interval</p>
         </div>
         {box.slots.map((slot) => <SlotForm key={`slot-${slot.order}`} slot={slot} />)}
       </div>

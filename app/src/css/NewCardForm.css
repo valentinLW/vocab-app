@@ -3,7 +3,7 @@
 }
 
 .new-card-form > *{
-  margin-right: 1rem;
+  margin-right: 0.5rem;
 }
 
 .card-submit-button {
@@ -11,4 +11,10 @@
   cursor: pointer;
   background-color: aliceblue;
   border-radius: 0.5rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .new-card-form input {
+    width: 40%;
+  }
 }
