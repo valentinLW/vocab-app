@@ -27,3 +27,9 @@
   padding: 0 0.25rem;
   border-radius: 0.25rem;
 }
+
+@media only screen and (max-width: 600px) {
+  .boxes-list {
+    margin: 0 0.5rem;
+  }
+}
