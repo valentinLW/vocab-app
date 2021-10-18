@@ -20,7 +20,7 @@ export function BoxesManager() {
   }
 
   const confirmDelete = (id) => {
-    const r = window.confirm("Aer you sure?");
+    const r = window.confirm("Are you sure?");
     if (r) {
       handleDeleteBox(id)
     }
@@ -34,7 +34,10 @@ export function BoxesManager() {
       {boxes.map((box) => {
         return(
           <div key={`box-${box.id}`} className="box-list-box">
-            <Link to={`/boxes/${box.id}`} className="boxes-list-box-link"><p>{box.count}</p>{box.name}</Link>
+            <Link to={`/boxes/${box.id}`} className="boxes-list-box-link">
+              {box.name}
+              {box.count > 0 && <p className="boxes-list-count">{box.count}</p>}
+              </Link>
             <Link to={`/boxes/${box.id}/manage`} className="boxes-list-manage-link"><GoGear/></Link>
             <GoTrashcan onClick={ ()=> confirmDelete(box.id)}/>
           </div>

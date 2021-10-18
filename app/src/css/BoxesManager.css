@@ -1,5 +1,5 @@
 .boxes-list {
-  margin-left: 15rem;
+  margin: 0 15rem;
   font-size: 1.5rem;
 }
 
@@ -9,21 +9,21 @@
 }
 
 .box-list-box > * {
-  margin: 0 0.5rem;
+  margin-right: 0.5rem;
 }
 
-.box-list-box:nth-child(1) {
-  margin: 0;
-}
-
-.box-manage-link {
-  margin-left: 1rem;
+.boxes-list-box-link p {
+  margin-left: 0.5rem;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .boxes-list-box-link {
   display: flex;
 }
 
-.boxes-list-box-link p {
-  margin: 0 0.5rem;
+.boxes-list-count {
+  background-color: #fc3d39;
+  padding: 0 0.25rem;
+  border-radius: 0.25rem;
 }
