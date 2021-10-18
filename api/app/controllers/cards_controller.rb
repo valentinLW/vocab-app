@@ -38,21 +38,27 @@ class CardsController < ApplicationController
   def new_batch
     @box = Box.find(params[:box_id])
     cards = []
+    bad = []
     csv = params[:csv]
     pairs = csv.split("\n")
     pairs.each do |p|
-      words = p.split(";")
-      card = Card.new(
-        language_code: @box.language,
-        box: @box,
-        from: words[0],
-        to: words[1],
-        color: rand(1..5),
-        level: 1
-      )
-      cards << card
+      words = p.split(';')
+      if words.size < 2
+        bad << p
+      else
+        card = Card.new(
+          language_code: @box.language,
+          box: @box,
+          from: words[0],
+          to: words[1],
+          color: rand(1..5),
+          level: 1
+        )
+        cards << card
+      end
     end
-    success = cards.all?(&:save)
-    render json: { cards: cards }, status: success ? 200 : 400
+    @success = true
+    cards.each { |c| @success = false unless c.save }
+    render json: { cards: cards, bad: bad }, status: @success ? 200 : 400
   end
 end
