@@ -2,7 +2,7 @@ class SlotsController < ApplicationController
   def update
     @slot = Slot.find(params[:id])
     @slot.quiztype = params[:quiztype] if params[:quiztype]
-    @slot.interval = params[:interval].to_i if params[:interval].to_i.is_a? Integer
+    @slot.interval = params[:interval].to_i if paramshas_key?(:interval)
 
     if @slot.save
       render json: @slot, status: 200
