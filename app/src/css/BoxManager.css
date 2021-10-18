@@ -1,3 +1,20 @@
+.box-manager {
+  margin: 0 10rem;
+}
+
+.box-manager-game-link {
+  display: flex;
+  align-items: center;
+}
+
+.box-manager-game-link > *{
+  margin-right: 1rem;
+}
+
+.box-manager-language {
+  display: flex;
+}
+
 .cards-list {
   display: flex;
   flex-wrap: wrap;
@@ -9,6 +26,7 @@
   margin: 0.25rem;
   border-radius: 0.25rem;
   padding: 0.25rem 0;
+  flex-grow: 1;
 }
 
 .cards-list p {
@@ -18,4 +36,13 @@
 .slot-list {
   display: flex;
   justify-content: space-around;
+}
+
+.slot-list-label-level {
+  margin: 0;
+  margin-top: 0.25rem;
+}
+
+.slot-list-label-select {
+  margin: 0;
 }

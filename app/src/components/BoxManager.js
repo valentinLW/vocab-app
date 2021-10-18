@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react"
 import { APIgetBox } from "../api/API";
 import { SlotForm } from "./SlotForm";
-import { GoArrowBoth } from "react-icons/go";
+import { GoArrowBoth, GoLinkExternal } from "react-icons/go";
 import { colors } from "../colors"
 import { NewCardForm } from "./NewCardForm";
 import { BatchNewCards } from "./BatchNewCards";
@@ -35,26 +35,26 @@ export function BoxManager() {
   }
 
   return(
-    <div>
-      <Link to={`/boxes/${id}`}>
+    <div className="box-manager">
+      <div className="box-manager-game-link">
         <h1>{box.box.name}</h1>
-      </Link>
-      <h3>language:</h3>
-      <h4>{box.box.language}</h4>
+        <Link to={`/boxes/${id}`}>
+          <GoLinkExternal size={30}/>
+        </Link>
+      </div>
+      <h3>Language: {box.box.language}</h3>
       <h3>Slots:</h3>
       <div className="slot-list">
-        {box.slots.map((slot) => {
-          return (
-            <div key={`slot-${slot.order}`} className="slot-list-slot">
-              <div>Level: {slot.order}</div>
-              <SlotForm slot={slot} />
-            </div>
-          )
-        })}
+        <div className="slot-list-label">
+          <p className="slot-list-label-level">slot:</p>
+          <p className="slot-list-label-select">quiz type:</p>
+          <p className="slot-list-label-select">repeat after:</p>
+        </div>
+        {box.slots.map((slot) => <SlotForm key={`slot-${slot.order}`} slot={slot} />)}
       </div>
-      <h3>Add Card:</h3>
+      <h3>Add card:</h3>
       <NewCardForm boxId={id} onNewCard={handleNewCard}/>
-      <h3>Add Cards from csv:<span style={{color: "#777777", marginLeft: "0.5rem"}}>(delimiter ';' one card per line)</span></h3>
+      <h3>Add cards from csv:<span style={{color: "#777777", marginLeft: "0.5rem"}}>(delimiter ';' one card per line)</span></h3>
       <BatchNewCards boxId={id} onNewCards={handleNewCards}/>
       <h3>Cards:</h3>
       <div className="cards-list">
