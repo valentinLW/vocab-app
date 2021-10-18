@@ -19,6 +19,13 @@ export function BoxesManager() {
     setBoxes((prevState) => prevState.filter((box) => box.id !== id));
   }
 
+  const confirmDelete = (id) => {
+    const r = window.confirm("Aer you sure?");
+    if (r) {
+      handleDeleteBox(id)
+    }
+  }
+
   return (
     <div className="boxes-list">
        <h4>Add box</h4>
@@ -29,7 +36,7 @@ export function BoxesManager() {
           <div key={`box-${box.id}`} className="box-list-box">
             <Link to={`/boxes/${box.id}`} className="boxes-list-box-link"><p>{box.count}</p>{box.name}</Link>
             <Link to={`/boxes/${box.id}/manage`} className="boxes-list-manage-link"><GoGear/></Link>
-            <GoTrashcan onClick={ ()=> handleDeleteBox(box.id)}/>
+            <GoTrashcan onClick={ ()=> confirmDelete(box.id)}/>
           </div>
         )
       })}
