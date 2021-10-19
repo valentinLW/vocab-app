@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     get 'boxes', to: 'boxes#index'
     post 'boxes/new', to: 'boxes#new'
     get 'boxes/:id', to: 'boxes#show'
+    get 'boxes/:id/reset', to: 'boxes#reset'
     delete 'boxes/:id', to: 'boxes#delete'
     patch 'cards/:id', to: 'cards#update'
     delete 'cards/:id', to: 'cards#destroy'

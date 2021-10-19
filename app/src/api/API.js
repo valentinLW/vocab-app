@@ -39,6 +39,12 @@ export function APIdeleteBox(id) {
   .catch(error => console.log(error))
 }
 
+export function APIresetBox(id) {
+  return axios.get(`${URL}/boxes/${id}/reset`, HEADERS)
+  .then(response => response.data)
+  .catch(error => console.log(error))
+}
+
 export function APInewCard(boxId, from, to) {
   const content = {box_id: boxId, from: from, to: to}
   return axios.post(`${URL}/cards/new`, content, HEADERS)

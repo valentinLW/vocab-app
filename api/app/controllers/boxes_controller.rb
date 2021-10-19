@@ -29,4 +29,14 @@ class BoxesController < ApplicationController
       render json: {}, status: 400
     end
   end
+
+  def reset
+    @box = Box.find(params[:id])
+    @box.cards.each do |card|
+      card.level = 1
+      card.next_test = Time.zone.now
+      card.save
+    end
+    render json: {}, status: 200
+  end
 end

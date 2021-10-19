@@ -1,8 +1,8 @@
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react"
-import { APIdeleteCard, APIgetBox } from "../api/API";
+import { APIdeleteCard, APIgetBox, APIresetBox } from "../api/API";
 import { SlotForm } from "./SlotForm";
-import { GoArrowBoth, GoLinkExternal, GoListUnordered } from "react-icons/go";
+import { GoArrowBoth, GoLinkExternal, GoListUnordered, GoZap } from "react-icons/go";
 import { colors } from "../colors"
 import { NewCardForm } from "./NewCardForm";
 import { BatchNewCards } from "./BatchNewCards";
@@ -24,6 +24,13 @@ export function BoxManager() {
 
   const handleNewCard = (card) => {
     setCards((prevState) => [...prevState, card])
+  }
+
+  const handleResetBox = () => {
+    const r = window.confirm("Set all cards to level 1?")
+    if (r) {
+      APIresetBox(id);
+    }
   }
 
   const handleDeleteCard = (card) => {
@@ -68,7 +75,10 @@ export function BoxManager() {
       <NewCardForm boxId={id} onNewCard={handleNewCard}/>
       <h3>Add cards from csv:<span style={{color: "#777777", marginLeft: "0.5rem"}}>(delimiter ';' one card per line)</span></h3>
       <BatchNewCards boxId={id} onNewCards={handleNewCards}/>
-      <h3>Cards:</h3>
+      <div className="card-list-header">
+        <h3>Cards:</h3>
+        <GoZap size="1.25rem" onClick={() => handleResetBox()} className="reset-box-button" />
+      </div>
       <div className="cards-list">
         {cards.map((card) => {
           return (

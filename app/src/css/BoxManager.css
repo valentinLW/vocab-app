@@ -12,6 +12,19 @@
   display: flex;
 }
 
+.card-list-header {
+  display: flex;
+  align-items: center;
+}
+
+.reset-box-button {
+  cursor: pointer;
+  margin-left: 0.5rem;
+  background-color: aliceblue;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+}
+
 .cards-list {
   display: flex;
   flex-wrap: wrap;
