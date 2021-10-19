@@ -1,4 +1,4 @@
-DEFAULT_INTERVALS = [0, 5, 30, 1440, 7200]
+DEFAULT_INTERVALS = [0, 15, 60, 360, 1440]
 
 class Box < ApplicationRecord
   has_many :cards, dependent: :destroy
@@ -8,7 +8,7 @@ class Box < ApplicationRecord
 
   after_create do
     5.times do |num|
-      quiz_type = [0, 1, 2].include?(num) ? 'choose' : 'choose-reverse'
+      quiz_type = [0, 1, 2].include?(num) ? 'type' : 'type-reverse'
       Slot.create(box: self, order: num + 1, quiztype: quiz_type, interval: DEFAULT_INTERVALS[num])
     end
   end

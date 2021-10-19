@@ -20,8 +20,8 @@ export function SlotForm({slot}) {
    <form className="slot-form" onSubmit={(e) => e.preventDefault()}>
     <p className="slot-from-title">Level {slot.order}</p>
     <select value={quizType || undefined} onChange={handleChange}>
-      <option value="choose">Choose</option>
-      <option value="choose-reverse">Choose reverse</option>
+      {/* <option value="choose">Choose</option>
+      <option value="choose-reverse">Choose reverse</option> */}
       <option value="type">Type</option>
       <option value="type-reverse">Type reverse</option>
     </select>
