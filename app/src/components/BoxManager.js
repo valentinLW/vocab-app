@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react"
-import { APIgetBox } from "../api/API";
+import { APIdeleteCard, APIgetBox } from "../api/API";
 import { SlotForm } from "./SlotForm";
 import { GoArrowBoth, GoLinkExternal, GoListUnordered } from "react-icons/go";
 import { colors } from "../colors"
@@ -24,6 +24,15 @@ export function BoxManager() {
 
   const handleNewCard = (card) => {
     setCards((prevState) => [...prevState, card])
+  }
+
+  const handleDeleteCard = (card) => {
+    const r = window.confirm(`Do you want to delete ${card.from}`);
+    if (r) {
+      APIdeleteCard(card.id).then((res) => {
+        setCards((prevState) => prevState.filter((c) => c.id !== card.id))
+      })
+    }
   }
 
   const handleNewCards = (cards) => {
@@ -63,7 +72,11 @@ export function BoxManager() {
       <div className="cards-list">
         {cards.map((card) => {
           return (
-            <div key={`card-${card.id}`} className="card-list-card" style={{backgroundColor: colors[card.color]}}>
+            <div
+              key={`card-${card.id}`}
+              className="card-list-card"
+              style={{backgroundColor: colors[card.color]}}
+              onClick={() => handleDeleteCard(card)}>
               <p>{card.from}</p>
               <GoArrowBoth />
               <p>{card.to}</p>

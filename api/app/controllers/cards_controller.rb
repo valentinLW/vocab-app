@@ -61,4 +61,13 @@ class CardsController < ApplicationController
     cards.each { |c| @success = false unless c.save }
     render json: { cards: cards, bad: bad }, status: @success ? 200 : 400
   end
+
+  def destroy
+    @card = Card.find(params[:id])
+    if @card.delete
+      render json: {}, status: 200
+    else
+      render json: {}, status: 400
+    end
+  end
 end
