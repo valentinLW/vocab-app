@@ -53,7 +53,7 @@ export function BoxManager() {
   return(
     <div className="box-manager">
       <div className="box-manager-links">
-        <Link to={`/boxes/`} className="box-home-link">
+        <Link to={`/`} className="box-home-link">
           <GoListUnordered size="2rem" />
         </Link>
         <h1>{box.box.name}</h1>
