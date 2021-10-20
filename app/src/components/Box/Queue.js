@@ -1,4 +1,4 @@
-import '../css/Queue.css'
+import './Queue.css'
 import { CardStack } from "./CardStack"
 
 export function Queue({queue}) {

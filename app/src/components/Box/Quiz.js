@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import '../css/Quiz.css'
+import './Quiz.css'
 
 export function Quiz({answered=false, reverse=false, onAnswer, card}) {
   const answer = reverse ? card.from : card.to

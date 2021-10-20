@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react"
-import { APIdeleteBox, APIgetBoxes } from "../api/API";
+import { APIdeleteBox, APIgetBoxes } from "../../api/API";
 import { NewBoxForm } from "./NewBoxForm";
 import { GoGear, GoTrashcan } from "react-icons/go";
-import '../css/BoxList.css'
+import './BoxList.css'
 
 export function BoxList() {
   const [boxes, setBoxes] = useState([]);

@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react"
-import { APIgetBox, APIupdateCard } from "../api/API";
+import { APIgetBox, APIupdateCard } from "../../api/API";
 import { Card } from "./Card";
 import { Queue } from "./Queue";
 import { Quiz } from "./Quiz";
 import { Slots } from "./Slots";
-import '../css/Box.css'
+import './Box.css'
 import { Result } from "./Result";
 import { GoGear, GoListUnordered } from "react-icons/go";
 import { Link } from "react-router-dom";

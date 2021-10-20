@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { BoxList } from "./components/BoxList";
-import { Box } from "./components/Box";
-import { BoxManager } from "./components/BoxManager";
+import { BoxList } from "./components/BoxList/BoxList";
+import { Box } from "./components/Box/Box";
+import { BoxManager } from "./components/BoxManager/BoxManager";
 
 function App() {
   return (

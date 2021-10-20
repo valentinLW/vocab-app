@@ -1,12 +1,12 @@
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react"
-import { APIdeleteCard, APIgetBox, APIresetBox } from "../api/API";
+import { APIdeleteCard, APIgetBox, APIresetBox } from "../../api/API";
 import { SlotForm } from "./SlotForm";
 import { GoArrowBoth, GoLinkExternal, GoListUnordered, GoZap } from "react-icons/go";
-import { colors } from "../colors"
+import { colors } from "../../colors"
 import { NewCardForm } from "./NewCardForm";
 import { BatchNewCards } from "./BatchNewCards";
-import '../css/BoxManager.css'
+import './BoxManager.css'
 
 export function BoxManager() {
   let {id} = useParams()

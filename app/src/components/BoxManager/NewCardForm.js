@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { GoPlus } from "react-icons/go";
-import { APInewCard } from "../api/API";
-import '../css/NewCardForm.css'
+import { APInewCard } from "../../api/API";
+import './NewCardForm.css'
 
 export function NewCardForm({boxId, onNewCard}) {
   const [from, setFrom] = useState("");

@@ -1,6 +1,6 @@
 import { useState } from "react"
-import { APIupdateSlot } from "../api/API";
-import '../css/SlotForm.css'
+import { APIupdateSlot } from "../../api/API";
+import './SlotForm.css'
 
 export function SlotForm({slot}) {
   const [quizType, setQuizType] = useState(slot.quiztype);
