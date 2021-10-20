@@ -1,21 +1,20 @@
 import { useState, useEffect } from "react"
-import { APIgetBox, APIupdateCard } from "../../api/API";
+import { Link } from "react-router-dom";
+import { useParams } from "react-router";
 import { Card } from "./Card";
 import { Queue } from "./Queue";
 import { Quiz } from "./Quiz";
 import { Slots } from "./Slots";
-import './Box.css'
 import { Result } from "./Result";
+import { APIgetBox, APIupdateCard } from "../../api/API";
 import { GoGear, GoListUnordered } from "react-icons/go";
-import { Link } from "react-router-dom";
-import { useParams } from "react-router";
+import './Box.css'
 
 export function Box() {
   let {id} = useParams()
   id = parseInt(id)
   const [cards, setCards] = useState([]);
   const [answered, setAnswered] = useState(false);
-  const [randomCards, setRandomCards] = useState([]);
   const [slots, setSlots] = useState([]);
 
   const queue = cards.filter((c) => {
@@ -23,8 +22,7 @@ export function Box() {
   ).sort((a, b) => (Date.parse(a.updated_at) > Date.parse(b.updated_at)) ? 1 : -1)
 
   const currentCard = queue[0]
-  const quizType = currentCard?.level ? slots[currentCard?.level-1]?.quiztype : null
-  const reverse = quizType ? quizType.includes("reverse") : ""
+  const reverse = currentCard?.level ? slots[currentCard?.level-1]?.quiztype.includes("reverse") : ""
 
   useEffect(() => {
     APIgetBox(id).then(({cards, slots}) => {
@@ -54,29 +52,8 @@ export function Box() {
     setAnswered(false);
   }
 
-  useEffect(() => {
-    if(!currentCard) return
-    const getRandomCard = () => {
-      const num = Math.floor(Math.random() * cards.length);
-      const card = cards[num]
-      return card.id === currentCard.id ? getRandomCard() : card
-    }
-
-    const getRandomCards = () => {
-      const a = []
-      for (var i = 0; i < 3; i++) {
-        a.push(getRandomCard())
-      }
-      const randomIndex = Math.floor(Math.random() * 3);
-      return [...a.slice(0, randomIndex), currentCard, ...a.slice(randomIndex)];
-    }
-
-    if(cards.length === 0) return
-    setRandomCards(getRandomCards);
-  }, [cards, currentCard])
-
   if (cards.length === 0) {
-    return (<h3>Loading...</h3>)
+    return (<h3>There are no cards in this box...</h3>)
   }
 
   return (
@@ -91,7 +68,7 @@ export function Box() {
       </div>
       <div className="box-game">
         {currentCard && <Card card={currentCard} reverse={reverse}/>}
-        {currentCard && <Quiz card={currentCard} allCards={randomCards} onAnswer={handleAnswer} answered={answered}/>}
+        {currentCard && <Quiz card={currentCard} onAnswer={handleAnswer} answered={answered}/>}
         {!currentCard && <h1 style={{paddingTop: "10rem"}}>No queue, come back later</h1>}
         <div className="result-container">
           {( currentCard && answered) && <Result card={currentCard} onNext={handleNext} isCorrect={answered === "correct"} reverse={reverse}/>}
