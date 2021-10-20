@@ -3,9 +3,9 @@ import { useState, useEffect } from "react"
 import { APIdeleteBox, APIgetBoxes } from "../api/API";
 import { NewBoxForm } from "./NewBoxForm";
 import { GoGear, GoTrashcan } from "react-icons/go";
-import '../css/BoxesManager.css'
+import '../css/BoxList.css'
 
-export function BoxesManager() {
+export function BoxList() {
   const [boxes, setBoxes] = useState([]);
 
   useEffect(() => {

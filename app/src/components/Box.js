@@ -10,7 +10,7 @@ import { GoGear, GoListUnordered } from "react-icons/go";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 
-export default function Box() {
+export function Box() {
   let {id} = useParams()
   id = parseInt(id)
   const [cards, setCards] = useState([]);
