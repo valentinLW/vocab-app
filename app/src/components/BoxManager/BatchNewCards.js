@@ -1,4 +1,4 @@
-import { APInewCardBatch } from "../api/API";
+import { APInewCardBatch } from "../../api/API";
 
 export function BatchNewCards({boxId, onNewCards}) {
 

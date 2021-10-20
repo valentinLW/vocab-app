@@ -1,7 +1,7 @@
 import { useState } from "react"
-import { APInewBox } from "../api/API";
+import { APInewBox } from "../../api/API";
 import { useHistory } from "react-router-dom"
-import '../css/NewBoxForm.css'
+import './NewBoxForm.css'
 import { GoPlus } from "react-icons/go";
 
 export function NewBoxForm(params) {

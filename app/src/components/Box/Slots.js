@@ -1,4 +1,4 @@
-import '../css/Slots.css'
+import './Slots.css'
 import { CardStack } from './CardStack'
 import { GoInfo } from 'react-icons/go'
 import { useState } from 'react'

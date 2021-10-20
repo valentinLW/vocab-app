@@ -1,32 +1,20 @@
 import { useState, useEffect } from "react"
-import { APIgetBox, APIupdateCard } from "../api/API";
+import { Link } from "react-router-dom";
+import { useParams } from "react-router";
 import { Card } from "./Card";
-import { Queue } from "./Queue";
+import { CardStack } from "./CardStack";
 import { Quiz } from "./Quiz";
 import { Slots } from "./Slots";
-import '../css/Box.css'
 import { Result } from "./Result";
+import { APIgetBox, APIupdateCard } from "../../api/API";
 import { GoGear, GoListUnordered } from "react-icons/go";
-import { Link } from "react-router-dom";
+import './Box.css'
 
-export function Box({id}) {
+export function Box() {
+  let {id} = useParams()
+  id = parseInt(id)
   const [cards, setCards] = useState([]);
-  const [answered, setAnswered] = useState(false);
-  const [randomCards, setRandomCards] = useState([]);
   const [slots, setSlots] = useState([]);
-
-  const queue = cards.filter((c) => {
-    // console.log(
-    //   c.from,
-    //   new Date(Date.parse(c.next_test)).toLocaleTimeString('de-DE', { hour: 'numeric', minute: 'numeric' }),
-    //   new Date(Date.now()).toLocaleTimeString('de-DE', { hour: 'numeric', minute: 'numeric' })
-    // )
-    return Date.parse(c.next_test) <= Date.now()}
-  ).sort((a, b) => (Date.parse(a.updated_at) > Date.parse(b.updated_at)) ? 1 : -1)
-  // const queue = cards.sort((a, b) => (Date.parse(a.updated_at) > Date.parse(b.updated_at)) ? 1 : -1)
-  const currentCard = queue[0]
-  const quizType = currentCard?.level ? slots[currentCard?.level-1]?.quiztype : null
-  const reverse = quizType ? quizType.includes("reverse") : ""
 
   useEffect(() => {
     APIgetBox(id).then(({cards, slots}) => {
@@ -34,6 +22,15 @@ export function Box({id}) {
       setSlots(slots);
     });
   }, [id]);
+
+  const queue = cards.filter((c) => {
+    return Date.parse(c.next_test) <= Date.now()}
+  ).sort((a, b) => (Date.parse(a.updated_at) > Date.parse(b.updated_at)) ? 1 : -1)
+
+  const currentCard = queue[0]
+  const reverse = currentCard?.level ? slots[currentCard?.level-1]?.quiztype.includes("reverse") : ""
+
+  const [answered, setAnswered] = useState(false);
 
   const handleAnswer = (correct) => {
     APIupdateCard(currentCard.id, correct);
@@ -56,35 +53,14 @@ export function Box({id}) {
     setAnswered(false);
   }
 
-  useEffect(() => {
-    if(!currentCard) return
-    const getRandomCard = () => {
-      const num = Math.floor(Math.random() * cards.length);
-      const card = cards[num]
-      return card.id === currentCard.id ? getRandomCard() : card
-    }
-
-    const getRandomCards = () => {
-      const a = []
-      for (var i = 0; i < 3; i++) {
-        a.push(getRandomCard())
-      }
-      const randomIndex = Math.floor(Math.random() * 3);
-      return [...a.slice(0, randomIndex), currentCard, ...a.slice(randomIndex)];
-    }
-
-    if(cards.length === 0) return
-    setRandomCards(getRandomCards);
-  }, [cards, currentCard])
-
   if (cards.length === 0) {
-    return (<h3>Loading...</h3>)
+    return (<h3>There are no cards in this box...</h3>)
   }
 
   return (
     <div className="box">
       <div className="box-links">
-        <Link to={`/boxes/`} className="box-home-link">
+        <Link to={`/`} className="box-home-link">
           <GoListUnordered size="2rem" />
         </Link>
         <Link to={`/boxes/${id}/manage`} className="box-manage-link">
@@ -93,14 +69,17 @@ export function Box({id}) {
       </div>
       <div className="box-game">
         {currentCard && <Card card={currentCard} reverse={reverse}/>}
-        {currentCard && <Quiz card={currentCard} allCards={randomCards} onAnswer={handleAnswer} answered={answered} quizType={quizType}/>}
+        {currentCard && <Quiz card={currentCard} onAnswer={handleAnswer} answered={answered}/>}
         {!currentCard && <h1 style={{paddingTop: "10rem"}}>No queue, come back later</h1>}
         <div className="result-container">
           {( currentCard && answered) && <Result card={currentCard} onNext={handleNext} isCorrect={answered === "correct"} reverse={reverse}/>}
         </div>
       </div>
       <div className="box-visuals">
-        <Queue queue={queue}/>
+        <div className="queue">
+          <h3>Queue: {queue.length}</h3>
+          <CardStack cards={queue} isQueue={true}/>
+        </div>
         <Slots cards={cards} intervals={slots.map((s) => s.interval)} quiztypes={slots.map((s) => s.quiztype)}/>
       </div>
     </div>

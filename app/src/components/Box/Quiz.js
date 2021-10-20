@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
-import '../css/TypeQuiz.css'
+import './Quiz.css'
 
-export function TypeQuiz({answered=false, reverse=false, onAnswer, card}) {
+export function Quiz({answered=false, reverse=false, onAnswer, card}) {
   const answer = reverse ? card.from : card.to
   const [input, setInput] = useState("");
   const handleChange = ({target}) => {

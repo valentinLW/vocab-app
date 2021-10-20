@@ -1,6 +1,6 @@
-import { colors } from "../colors"
-import { translations } from "../translations"
-import '../css/Card.css'
+import { colors } from "../../colors"
+import { translations } from "../../translations"
+import './Card.css'
 
 export function Card({card, reverse=false}) {
   const from_lang = card.language_code.substring(0,2);

@@ -1,6 +1,6 @@
-import { colors } from "../colors"
+import { colors } from "../../colors"
 import { AudioPlayer } from "./AudioPlayer";
-import '../css/Result.css'
+import './Result.css'
 import { GoCheck, GoX } from "react-icons/go";
 import { useEffect } from "react";
 

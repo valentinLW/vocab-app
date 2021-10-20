@@ -1,5 +1,5 @@
-import { colors } from "../colors"
-import '../css/CardStack.css'
+import { colors } from "../../colors"
+import './CardStack.css'
 
 export function CardStack({cards, isQueue=false}) {
   return (
