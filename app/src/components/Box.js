@@ -8,22 +8,20 @@ import '../css/Box.css'
 import { Result } from "./Result";
 import { GoGear, GoListUnordered } from "react-icons/go";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router";
 
-export function Box({id}) {
+export default function Box() {
+  let {id} = useParams()
+  id = parseInt(id)
   const [cards, setCards] = useState([]);
   const [answered, setAnswered] = useState(false);
   const [randomCards, setRandomCards] = useState([]);
   const [slots, setSlots] = useState([]);
 
   const queue = cards.filter((c) => {
-    // console.log(
-    //   c.from,
-    //   new Date(Date.parse(c.next_test)).toLocaleTimeString('de-DE', { hour: 'numeric', minute: 'numeric' }),
-    //   new Date(Date.now()).toLocaleTimeString('de-DE', { hour: 'numeric', minute: 'numeric' })
-    // )
     return Date.parse(c.next_test) <= Date.now()}
   ).sort((a, b) => (Date.parse(a.updated_at) > Date.parse(b.updated_at)) ? 1 : -1)
-  // const queue = cards.sort((a, b) => (Date.parse(a.updated_at) > Date.parse(b.updated_at)) ? 1 : -1)
+
   const currentCard = queue[0]
   const quizType = currentCard?.level ? slots[currentCard?.level-1]?.quiztype : null
   const reverse = quizType ? quizType.includes("reverse") : ""
@@ -93,7 +91,7 @@ export function Box({id}) {
       </div>
       <div className="box-game">
         {currentCard && <Card card={currentCard} reverse={reverse}/>}
-        {currentCard && <Quiz card={currentCard} allCards={randomCards} onAnswer={handleAnswer} answered={answered} quizType={quizType}/>}
+        {currentCard && <Quiz card={currentCard} allCards={randomCards} onAnswer={handleAnswer} answered={answered}/>}
         {!currentCard && <h1 style={{paddingTop: "10rem"}}>No queue, come back later</h1>}
         <div className="result-container">
           {( currentCard && answered) && <Result card={currentCard} onNext={handleNext} isCorrect={answered === "correct"} reverse={reverse}/>}
