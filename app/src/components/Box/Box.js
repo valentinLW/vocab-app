@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 import { Card } from "./Card";
-import { Queue } from "./Queue";
+import { CardStack } from "./CardStack";
 import { Quiz } from "./Quiz";
 import { Slots } from "./Slots";
 import { Result } from "./Result";
@@ -14,8 +14,14 @@ export function Box() {
   let {id} = useParams()
   id = parseInt(id)
   const [cards, setCards] = useState([]);
-  const [answered, setAnswered] = useState(false);
   const [slots, setSlots] = useState([]);
+
+  useEffect(() => {
+    APIgetBox(id).then(({cards, slots}) => {
+      setCards(cards);
+      setSlots(slots);
+    });
+  }, [id]);
 
   const queue = cards.filter((c) => {
     return Date.parse(c.next_test) <= Date.now()}
@@ -24,12 +30,7 @@ export function Box() {
   const currentCard = queue[0]
   const reverse = currentCard?.level ? slots[currentCard?.level-1]?.quiztype.includes("reverse") : ""
 
-  useEffect(() => {
-    APIgetBox(id).then(({cards, slots}) => {
-      setCards(cards);
-      setSlots(slots);
-    });
-  }, [id]);
+  const [answered, setAnswered] = useState(false);
 
   const handleAnswer = (correct) => {
     APIupdateCard(currentCard.id, correct);
@@ -75,7 +76,10 @@ export function Box() {
         </div>
       </div>
       <div className="box-visuals">
-        <Queue queue={queue}/>
+        <div className="queue">
+          <h3>Queue: {queue.length}</h3>
+          <CardStack cards={queue} isQueue={true}/>
+        </div>
         <Slots cards={cards} intervals={slots.map((s) => s.interval)} quiztypes={slots.map((s) => s.quiztype)}/>
       </div>
     </div>
