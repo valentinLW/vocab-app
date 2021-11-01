@@ -38,12 +38,14 @@ export function NewBoxForm(params) {
         <option value="de">German</option>
         <option value="es">Spanish</option>
         <option value="en">English</option>
+        <option value="pt">Portuguese</option>
       </select>
       <p>to:</p>
       <select value={to} onChange={handleToChange}>
         <option value="es">Spanish</option>
         <option value="en">English</option>
         <option value="de">German</option>
+        <option value="pt">Portuguese</option>
       </select>
       <button type="submit" style={{display: "none"}}/>
       <GoPlus className="new-box-button" onClick={handleSubmit}></GoPlus>

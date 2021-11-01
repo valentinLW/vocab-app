@@ -1,4 +1,4 @@
 .DS_Store
-app/.env
-api/.env
-app/package-lock.json
+.env
+package-lock.json
+node_modules
