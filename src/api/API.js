@@ -12,6 +12,7 @@ export function APIgetBox(id) {
 export function APIgetBoxes() {
   return axios.get(`${URL}/boxes/`, HEADERS)
   .then(response => {
+    console.log(response);
     return { boxes:
       response.data.boxes.map((b) => {
         const bCount = response.data.counts[b.id]
