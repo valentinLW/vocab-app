@@ -28,7 +28,8 @@ export function Box() {
   ).sort((a, b) => (Date.parse(a.updated_at) > Date.parse(b.updated_at)) ? 1 : -1)
 
   const currentCard = queue[0]
-  const reverse = currentCard?.level ? slots[currentCard?.level-1]?.quiztype.includes("reverse") : ""
+  const reverse = slots[currentCard?.level-1]?.quiztype.includes("reverse")
+  console.log({reverse})
 
   const [answered, setAnswered] = useState(false);
 
@@ -69,7 +70,7 @@ export function Box() {
       </div>
       <div className="box-game">
         {currentCard && <Card card={currentCard} reverse={reverse}/>}
-        {currentCard && <Quiz card={currentCard} onAnswer={handleAnswer} answered={answered}/>}
+        {currentCard && <Quiz card={currentCard} onAnswer={handleAnswer} answered={answered} reverse={reverse}/>}
         {!currentCard && <h1 style={{paddingTop: "10rem"}}>No queue, come back later</h1>}
         <div className="result-container">
           {( currentCard && answered) && <Result card={currentCard} onNext={handleNext} isCorrect={answered === "correct"} reverse={reverse}/>}
