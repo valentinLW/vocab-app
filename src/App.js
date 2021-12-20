@@ -3,6 +3,7 @@ import { BoxList } from "./components/BoxList/BoxList";
 import { Box } from "./components/Box/Box";
 import { BoxManager } from "./components/BoxManager/BoxManager";
 import { HomeScreen } from "./components/common/HomeScreen";
+import ProtectedRoute from "./components/common/ProtectedRoute";
 
 
 function App() {
@@ -10,9 +11,9 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/" component={HomeScreen}/>
-        <Route exact path="/boxes" component={BoxList}/>
-        <Route exact path="/boxes/:id" component={Box}/>
-        <Route exact path="/boxes/:id/manage" component={BoxManager}/>
+        <ProtectedRoute exact path="/boxes" component={BoxList}/>
+        <ProtectedRoute exact path="/boxes/:id" component={Box}/>
+        <ProtectedRoute exact path="/boxes/:id/manage" component={BoxManager}/>
       </Switch>
     </Router>
   );
