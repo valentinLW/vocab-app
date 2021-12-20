@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export function LoginForm() {
   const [username, setUsername] = useState("");
@@ -14,6 +15,7 @@ export function LoginForm() {
       .then((response) => {
         if(response.data.token) {
           localStorage.setItem('token', `bearer ${response.data.token}`);
+          localStorage.setItem('name', `${response.data.name}`);
         } else {
           console.log("nope", response.data.error);
         }
@@ -32,7 +34,14 @@ export function LoginForm() {
   }
 
   if(localStorage.getItem('token')) {
-    return (null)
+    return (
+      <>
+        <h1>Hello {localStorage.getItem('name')}!</h1>
+        <Link to={`/boxes`} className="box-home-link">
+          Go to boxes
+        </Link>
+      </>
+    )
   }
 
   return (

@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const URL = "/api/v1";
-const HEADERS = { headers: {'Content-Type': 'application/json', 'Authorization': `bearer asdasdasdtokenasdasd`} };
+const HEADERS = { headers: {'Content-Type': 'application/json', 'Authorization': localStorage.getItem('token')} };
 
 export function APIgetBox(id) {
   return axios.get(`${URL}/boxes/${id}`, HEADERS)
