@@ -11,12 +11,12 @@ export function NewBoxForm(params) {
     setName(target.value);
   }
 
-  const [to, setTo] = useState("en")
+  const [to, setTo] = useState("pt")
   const handleToChange = ({target}) => {
     setTo(target.value);
   }
 
-  const [from, setFrom] = useState("de")
+  const [from, setFrom] = useState("en")
   const handleFromChange = ({target}) => {
     setFrom(target.value);
   }

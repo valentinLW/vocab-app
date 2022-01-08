@@ -30,12 +30,12 @@ export function Mastery() {
   return (
     <div className="mastery">
       {masteries.length > 0 && <>
-        <p className="mastery-prompt">{masteries[0].from}</p>
+        <p className="mastery-prompt">{masteries[0].to}</p>
         {!answerVisible && <div className="reveal-button" onClick={showAnswer}>Show Answer</div>}
       </>}
 
       {answerVisible && <>
-        <p className="mastery-answer">{masteries[0].to}</p>
+        <p className="mastery-answer">{masteries[0].from}</p>
         <div className="mastery-buttons">
           <MasteryButton text={"perfect"} color={colors.green} onClick={() => handleNext(5)}/>
           <MasteryButton text={"easy"} color={colors.green} onClick={() => handleNext(4)}/>
