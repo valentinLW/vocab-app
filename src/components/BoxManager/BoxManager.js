@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react"
 import { APIdeleteCard, APIgetBox, APIresetBox } from "../../api/API";
-import { SlotForm } from "./SlotForm";
+//import { SlotForm } from "./SlotForm";
 import { GoArrowBoth, GoLinkExternal, GoListUnordered, GoZap } from "react-icons/go";
 import { colors } from "../../colors"
 import { NewCardForm } from "./NewCardForm";
@@ -62,7 +62,7 @@ export function BoxManager() {
         </Link>
       </div>
       <h3>Language: {box.box.language}</h3>
-      <h3>Slots:</h3>
+      {/* <h3>Slots:</h3>
       <div className="slot-list">
         <div className="slot-list-label">
           <p className="slot-list-label-level">slot</p>
@@ -70,7 +70,7 @@ export function BoxManager() {
           <p className="slot-list-label-select">interval</p>
         </div>
         {box.slots.map((slot) => <SlotForm key={`slot-${slot.order}`} slot={slot} />)}
-      </div>
+      </div> */}
       <h3>Add card:</h3>
       <NewCardForm boxId={id} onNewCard={handleNewCard}/>
       <h3>Add cards from csv:<span style={{color: "#777777", marginLeft: "0.5rem"}}>(delimiter ';' one card per line)</span></h3>

@@ -61,7 +61,7 @@ export function Box() {
   return (
     <div className="box">
       <div className="box-links">
-        <Link to={`/`} className="box-home-link">
+        <Link to={`/boxes`} className="box-home-link">
           <GoListUnordered size="2rem" />
         </Link>
         <Link to={`/boxes/${id}/manage`} className="box-manage-link">

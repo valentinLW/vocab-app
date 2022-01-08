@@ -4,6 +4,7 @@ import { Box } from "./components/Box/Box";
 import { BoxManager } from "./components/BoxManager/BoxManager";
 import { HomeScreen } from "./components/common/HomeScreen";
 import ProtectedRoute from "./components/common/ProtectedRoute";
+import { Mastery } from "./components/Mastery/Mastery";
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <ProtectedRoute exact path="/boxes" component={BoxList}/>
         <ProtectedRoute exact path="/boxes/:id" component={Box}/>
         <ProtectedRoute exact path="/boxes/:id/manage" component={BoxManager}/>
+        <ProtectedRoute exact path="/mastery" component={Mastery}/>
       </Switch>
     </Router>
   );

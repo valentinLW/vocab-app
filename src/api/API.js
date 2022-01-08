@@ -22,7 +22,7 @@ export function APIgetBoxes() {
           return {...b, count: 0}
         }
       }
-    )}
+    ), masteryCount: response.data.mastery_count}
   })
   .catch(error => console.log(error))
 }
@@ -36,6 +36,12 @@ export function APInewBox(name, language) {
 
 export function APIdeleteBox(id) {
   return axios.delete(`${URL}/boxes/${id}`, HEADERS)
+  .then(response => response.data)
+  .catch(error => console.log(error))
+}
+
+export function APImasterBox(id) {
+  return axios.get(`${URL}/boxes/${id}/mastery`, HEADERS)
   .then(response => response.data)
   .catch(error => console.log(error))
 }
@@ -75,6 +81,18 @@ export function APIupdateCard(id, correct) {
 
 export function APIupdateSlot(id, content) {
   return axios.patch(`${URL}/slots/${id}`, content, HEADERS)
+  .then(response => response.data)
+  .catch(error => console.log(error))
+}
+
+export function APIgetMasteries() {
+  return axios.get(`${URL}/mastery`, HEADERS)
+  .then(response => response.data)
+  .catch(error => console.log(error))
+}
+
+export function APIupdateMastery(id, difficulty) {
+  return axios.patch(`${URL}/mastery/${id}`, { difficulty: difficulty }, HEADERS)
   .then(response => response.data)
   .catch(error => console.log(error))
 }
