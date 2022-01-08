@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { APIgetMasteries, APIupdateMastery } from "../../api/API";
 import './Mastery.css'
 import { MasteryButton } from "./MasteryButton";
+import { colors } from "../../colors"
 
 export function Mastery() {
   const [masteries, setMasteries] = useState([]);
@@ -29,18 +30,20 @@ export function Mastery() {
   return (
     <div className="mastery">
       {masteries.length > 0 && <>
-        <p>{masteries[0].from}</p>
-        {!answerVisible && <div onClick={showAnswer}>Show Answer</div>}
+        <p className="mastery-prompt">{masteries[0].from}</p>
+        {!answerVisible && <div className="reveal-button" onClick={showAnswer}>Show Answer</div>}
       </>}
 
       {answerVisible && <>
-        <p>{masteries[0].to}</p>
-        <MasteryButton text={"perfect"} onClick={() => handleNext(5)}/>
-        <MasteryButton text={"easy"} onClick={() => handleNext(4)}/>
-        <MasteryButton text={"difficult"} onClick={() => handleNext(3)}/>
-        <MasteryButton text={"incorrect"} onClick={() => handleNext(2)}/>
-        <MasteryButton text={"mistaken"} onClick={() => handleNext(1)}/>
-        <MasteryButton text={"blackout"} onClick={() => handleNext(0)}/>
+        <p className="mastery-answer">{masteries[0].to}</p>
+        <div className="mastery-buttons">
+          <MasteryButton text={"perfect"} color={colors.green} onClick={() => handleNext(5)}/>
+          <MasteryButton text={"easy"} color={colors.green} onClick={() => handleNext(4)}/>
+          <MasteryButton text={"difficult"} color={colors.red} onClick={() => handleNext(3)}/>
+          <MasteryButton text={"incorrect"} color={colors.red} onClick={() => handleNext(2)}/>
+          <MasteryButton text={"mistaken"} color={colors.red} onClick={() => handleNext(1)}/>
+          <MasteryButton text={"blackout"} color="black" onClick={() => handleNext(0)}/>
+        </div>
       </>}
       {masteries.length === 0 && <>
         <p>No Masteries now, come back later</p>

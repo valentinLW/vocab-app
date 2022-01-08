@@ -1,0 +1,15 @@
+.mastery-button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.mastery-button > p {
+  margin: 0;
+}
+
+.mastery-button + .mastery-button {
+  margin-left: 1rem;
+}

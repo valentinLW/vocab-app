@@ -1,10 +1,10 @@
 import './MasteryButton.css'
 
-export function MasteryButton({text, onClick}) {
+export function MasteryButton({text, onClick, color}) {
 
   return (
-    <div className="mastery" onClick={onClick}>
-      <div className="mastery-button">{text}</div>
+    <div className="mastery-button" onClick={onClick} style={{backgroundColor: color}}>
+      <p>{text}</p>
     </div>
   )
 }
