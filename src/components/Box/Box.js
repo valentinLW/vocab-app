@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react"
-import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 import { Card } from "./Card";
 import { CardStack } from "./CardStack";
@@ -7,8 +6,9 @@ import { Quiz } from "./Quiz";
 import { Slots } from "./Slots";
 import { Result } from "./Result";
 import { APIgetBox, APIupdateCard } from "../../api/API";
-import { GoGear, GoListUnordered } from "react-icons/go";
+import { GoGear } from "react-icons/go";
 import './Box.css'
+import { Nav } from "../common/Nav";
 
 export function Box() {
   let {id} = useParams()
@@ -60,14 +60,7 @@ export function Box() {
 
   return (
     <div className="box">
-      <div className="box-links">
-        <Link to={`/boxes`} className="box-home-link">
-          <GoListUnordered size="2rem" />
-        </Link>
-        <Link to={`/boxes/${id}/manage`} className="box-manage-link">
-          <GoGear size="2rem" />
-        </Link>
-      </div>
+    <Nav link={`/boxes/${id}/manage`} icon={<GoGear/>}/>
       <div className="box-game">
         {currentCard && <Card card={currentCard} reverse={reverse}/>}
         {currentCard && <Quiz card={currentCard} onAnswer={handleAnswer} answered={answered} reverse={reverse}/>}

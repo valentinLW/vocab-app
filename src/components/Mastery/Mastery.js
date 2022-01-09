@@ -3,6 +3,7 @@ import { APIgetMasteries, APIupdateMastery } from "../../api/API";
 import './Mastery.css'
 import { MasteryButton } from "./MasteryButton";
 import { colors } from "../../colors"
+import { Nav } from "../common/Nav";
 
 export function Mastery() {
   const [masteries, setMasteries] = useState([]);
@@ -29,6 +30,7 @@ export function Mastery() {
 
   return (
     <div className="mastery">
+    <Nav header="mastery"/>
       {masteries.length > 0 && <>
         <p className="mastery-prompt">{masteries[0].to}</p>
         {!answerVisible && <div className="reveal-button" onClick={showAnswer}>Show Answer</div>}

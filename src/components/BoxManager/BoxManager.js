@@ -1,12 +1,13 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react"
 import { APIdeleteCard, APIgetBox, APIresetBox } from "../../api/API";
 //import { SlotForm } from "./SlotForm";
-import { GoArrowBoth, GoLinkExternal, GoListUnordered, GoZap } from "react-icons/go";
+import { GoArrowBoth, GoLinkExternal, GoZap } from "react-icons/go";
 import { colors } from "../../colors"
 import { NewCardForm } from "./NewCardForm";
 import { BatchNewCards } from "./BatchNewCards";
 import './BoxManager.css'
+import { Nav } from "../common/Nav";
 
 export function BoxManager() {
   let {id} = useParams()
@@ -52,15 +53,7 @@ export function BoxManager() {
 
   return(
     <div className="box-manager">
-      <div className="box-manager-links">
-        <Link to={`/`} className="box-home-link">
-          <GoListUnordered size="2rem" />
-        </Link>
-        <h1>{box.box.name}</h1>
-        <Link to={`/boxes/${id}`}>
-          <GoLinkExternal size="2rem"/>
-        </Link>
-      </div>
+      <Nav link={`/boxes/${id}`} icon={<GoLinkExternal/>} header={box.box.name}/>
       <h3>Language: {box.box.language}</h3>
       {/* <h3>Slots:</h3>
       <div className="slot-list">

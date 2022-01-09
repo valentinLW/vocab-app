@@ -1,0 +1,15 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.nav-link {
+  margin: 0 2rem;
+}
+
+.nav-link > svg {
+  height: 2rem;
+  width: 2rem;
+}
