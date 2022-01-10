@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { APIgetMasteries, APIupdateMastery } from "../../api/API";
 import './Mastery.css'
 import { MasteryButton } from "./MasteryButton";
@@ -20,17 +20,40 @@ export function Mastery() {
     });
   }, [])
 
-  const showAnswer = () => {
-    setAnswerVisible(true)
-  }
-
-  const handleNext = (difficulty) => {
+  const handleNext = useCallback((difficulty) => {
     APIupdateMastery(masteries[0].id, difficulty).then((re) => {
       console.log(re.mastery.next_test)
       setMasteries((prevState) => prevState.slice(1))
       setAnswerVisible(false)
     });
+  }, [masteries])
+
+  const handleUserKeyPress = useCallback(event => {
+    const { key } = event;
+
+    if (!answerVisible) {
+      if (key === "Enter") {
+        setAnswerVisible(true)
+      }
+    } else {
+      if(["1","2","3","4","5"].includes(key)) {
+        handleNext(parseInt(key))
+      }
+    }
+
+  }, [answerVisible, handleNext]);
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleUserKeyPress);
+    return () => {
+        window.removeEventListener("keydown", handleUserKeyPress);
+    };
+}, [handleUserKeyPress]);
+
+  const showAnswer = () => {
+    setAnswerVisible(true)
   }
+
 
 
   return (
