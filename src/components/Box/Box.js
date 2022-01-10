@@ -20,6 +20,7 @@ export function Box() {
     APIgetBox(id).then(({cards, slots}) => {
       setCards(cards);
       setSlots(slots);
+      console.log(slots.sort((a, b) => a.order - b.order))
     });
   }, [id]);
 
@@ -29,7 +30,6 @@ export function Box() {
 
   const currentCard = queue[0]
   const reverse = slots[currentCard?.level-1]?.quiztype.includes("reverse")
-  console.log({reverse})
 
   const [answered, setAnswered] = useState(false);
 
