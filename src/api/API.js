@@ -96,3 +96,9 @@ export function APIupdateMastery(id, difficulty) {
   .then(response => response.data)
   .catch(error => console.log(error))
 }
+
+export function APIindexMastery() {
+  return axios.get(`${URL}/masteries`, HEADERS)
+  .then(response => response.data)
+  .catch(error => console.log(error))
+}

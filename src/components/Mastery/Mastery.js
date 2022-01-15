@@ -5,6 +5,7 @@ import { MasteryButton } from "./MasteryButton";
 import { colors } from "../../colors"
 import { Nav } from "../common/Nav";
 import { AudioPlayer } from "../common/AudioPlayer";
+import { GoGear } from "react-icons/go";
 
 export function Mastery() {
   const [masteries, setMasteries] = useState([]);
@@ -58,7 +59,7 @@ export function Mastery() {
 
   return (
     <div className="mastery">
-    <Nav header="mastery"/>
+     <Nav header="Mastery" link="mastery/manage" icon={<GoGear/>}/>
       {masteries.length > 0 && <>
         <p className="mastery-prompt">{masteries[0].to}</p>
         {!answerVisible &&

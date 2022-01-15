@@ -19,7 +19,7 @@ export function Quiz({answered=false, reverse, onAnswer, card}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(answered || input === "") return;
+    if(answered || input === "") return;
     onAnswer(answer === input);
   }
 
