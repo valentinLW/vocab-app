@@ -6,6 +6,7 @@ import { HomeScreen } from "./components/common/HomeScreen";
 import ProtectedRoute from "./components/common/ProtectedRoute";
 import { Mastery } from "./components/Mastery/Mastery";
 import { MasteryManager } from "./components/Mastery/MasteryManager";
+import { NewBox } from "./components/NewBox/NewBox";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <ProtectedRoute exact path="/boxes/:id/manage" component={BoxManager}/>
         <ProtectedRoute exact path="/mastery" component={Mastery}/>
         <ProtectedRoute exact path="/mastery/manage" component={MasteryManager}/>
+        <ProtectedRoute exact path="/new" component={NewBox}/>
       </Switch>
     </Router>
   );
