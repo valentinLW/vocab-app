@@ -1,10 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { Redirect } from 'react-router-dom';
+import './LoginForm.css'
 
 export function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [sigInSuccess, setSignInSuccess] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,13 +19,12 @@ export function LoginForm() {
         if(response.data.token) {
           localStorage.setItem('token', `bearer ${response.data.token}`);
           localStorage.setItem('name', `${response.data.name}`);
+          setSignInSuccess(true);
         } else {
           console.log("nope", response.data.error);
         }
       })
       .catch((error) => console.log(error));
-      setUsername("");
-      setPassword("");
   }
 
   const handleUsernameChange = (e) => {
@@ -34,21 +36,14 @@ export function LoginForm() {
   }
 
   if(localStorage.getItem('token')) {
-    return (
-      <>
-        <h1>Hello {localStorage.getItem('name')}!</h1>
-        <Link to={`/boxes`} className="box-home-link">
-          Go to boxes
-        </Link>
-      </>
-    )
+    return (<Redirect to="/boxes"/>)
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="login-form" onSubmit={handleSubmit}>
       <input value={username} onChange={handleUsernameChange} type="text" placeholder="username" />
       <input value={password} onChange={handlePasswordChange} type="password" placeholder="password" />
-      <button type="submit">Submit</button>
+      <button type="submit">Login</button>
     </form>
   )
 }

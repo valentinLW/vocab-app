@@ -1,0 +1,19 @@
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form > * {
+    font-size: 2rem;
+    border-radius: 0.25rem;
+    margin: 0.5rem 0;
+    padding: 0.25rem 0;
+    border: 3px solid rgb(211, 231, 249);;
+}
+
+.login-form > button {
+    width: fit-content;
+    margin: 0 auto;
+    padding: 0.25rem 1rem;
+    background-color: aliceblue;
+}

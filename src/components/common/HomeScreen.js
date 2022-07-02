@@ -1,6 +1,8 @@
 import './HomeScreen.css'
 import { LoginForm } from './LoginForm'
 import { Redirect } from 'react-router-dom';
+import { Nav } from "../common/Nav";
+import { GoSignIn } from 'react-icons/go';
 
 export function HomeScreen() {
 
@@ -10,7 +12,7 @@ export function HomeScreen() {
 
   return (
     <div className="homescreen">
-       <h1>Vocab - flashcards</h1>
+       <Nav header={"vocab"}/>
        <LoginForm />
     </div>
   )
