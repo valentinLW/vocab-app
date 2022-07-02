@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router";
+import { Redirect } from "react-router-dom";
 import { Card } from "./Card";
 import { Quiz } from "./Quiz";
 import { Result } from "./Result";
@@ -52,7 +53,7 @@ export function Box() {
   }
 
   if (cards.length === 0) {
-    return (<h3>There are no cards in this box...</h3>)
+    return (<Redirect to={`/boxes/${id}/manage`}/>)
   }
 
   return (

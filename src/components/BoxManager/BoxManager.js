@@ -1,13 +1,14 @@
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useState, useEffect } from "react"
-import { APIdeleteCard, APIgetBox, APIresetBox } from "../../api/API";
-import { GoArrowBoth, GoLinkExternal, GoZap, GoListUnordered } from "react-icons/go";
+import { APIdeleteCard, APIgetBox, APIresetBox, APImasterBox, APIdeleteBox } from "../../api/API";
+import { GoArrowBoth, GoLinkExternal, GoZap, GoListUnordered, GoKey, GoTrashcan } from "react-icons/go";
 import { colors } from "../../colors"
 import { NewCardForm } from "./NewCardForm";
 import './BoxManager.css'
 import { Nav } from "../common/Nav";
 
 export function BoxManager() {
+  const history = useHistory()
   let {id} = useParams()
   id = parseInt(id)
   const [box, setBox] = useState(null)
@@ -41,8 +42,24 @@ export function BoxManager() {
     }
   }
 
+  const handleMastery = () => {
+    const r = window.confirm("Retire all cards to mastery?");
+    if (r) {
+      APImasterBox(id);
+      history.push("/boxes")
+    }
+  }
+
+  const handleDeleteBox = () => {
+    const r = window.confirm("Are you sure?");
+    if (r) {
+      APIdeleteBox(id);
+      history.push("/boxes")
+    }
+  }
+
   if(box === null) {
-    return(<h1>Loading...</h1>)
+    return (<h3>BOXNULL</h3>)
   }
 
   return(
@@ -52,8 +69,16 @@ export function BoxManager() {
       <h3>Add card:</h3>
       <NewCardForm boxId={id} onNewCard={handleNewCard}/>
       <div className="card-list-header">
-        <h3>Cards:</h3>
+        <h3>Reset cards:</h3>
         <GoZap size="1.25rem" onClick={() => handleResetBox()} className="reset-box-button" />
+      </div>
+      <div className="card-list-header">
+        <h3>Retire cards to mastery:</h3>
+        <GoKey size="1.25rem" onClick={() => handleMastery()} className="reset-box-button" />
+      </div>
+      <div className="card-list-header">
+        <h3>Delete box and cards:</h3>
+        <GoTrashcan size="1.25rem" onClick={() => handleDeleteBox()} className="reset-box-button" />
       </div>
       <div className="cards-list">
         {cards.map((card) => {
