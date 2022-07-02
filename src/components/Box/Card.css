@@ -6,4 +6,36 @@
   border-radius: 0.5rem;
   text-align: left;
   padding-left: 1rem;
+  position: relative;
+}
+
+.card-prompt {
+  padding: 1rem 0.5rem;
+}
+
+.card > p, .card-prompt > p {
+  margin: 0;
+}
+
+.card-level {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: -0.75rem;
+  top: -0.75rem;
+  font-size: 2rem;
+  background-color: aliceblue;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 3px solid black;
+}
+
+.card-definition {
+  font-size: 0.75em;
+}
+
+.card-answer {
+  border-top: 3px solid black;
 }
