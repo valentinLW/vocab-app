@@ -52,8 +52,8 @@ export function APIresetBox(id) {
   .catch(error => console.log(error))
 }
 
-export function APInewCard(boxId, from, to) {
-  const content = {box_id: boxId, from: from, to: to}
+export function APInewCard(boxId, from, to, definition) {
+  const content = {box_id: boxId, from: from, to: to, definition: definition}
   return axios.post(`${URL}/cards/new`, content, HEADERS)
   .then(response => response.data)
   .catch(error => console.log(error))

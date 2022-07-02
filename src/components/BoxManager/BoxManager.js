@@ -1,11 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react"
 import { APIdeleteCard, APIgetBox, APIresetBox } from "../../api/API";
-//import { SlotForm } from "./SlotForm";
 import { GoArrowBoth, GoLinkExternal, GoZap } from "react-icons/go";
 import { colors } from "../../colors"
 import { NewCardForm } from "./NewCardForm";
-import { BatchNewCards } from "./BatchNewCards";
 import './BoxManager.css'
 import { Nav } from "../common/Nav";
 
@@ -43,10 +41,6 @@ export function BoxManager() {
     }
   }
 
-  const handleNewCards = (cards) => {
-    setCards((prevState) => [...prevState, ...cards])
-  }
-
   if(box === null) {
     return(<h1>Loading...</h1>)
   }
@@ -54,20 +48,9 @@ export function BoxManager() {
   return(
     <div className="box-manager">
       <Nav link={`/boxes/${id}`} icon={<GoLinkExternal/>} header={box.box.name}/>
-      <h3>Language: {box.box.language}</h3>
-      {/* <h3>Slots:</h3>
-      <div className="slot-list">
-        <div className="slot-list-label">
-          <p className="slot-list-label-level">slot</p>
-          <p className="slot-list-label-select">quiz type</p>
-          <p className="slot-list-label-select">interval</p>
-        </div>
-        {box.slots.map((slot) => <SlotForm key={`slot-${slot.order}`} slot={slot} />)}
-      </div> */}
+
       <h3>Add card:</h3>
       <NewCardForm boxId={id} onNewCard={handleNewCard}/>
-      <h3>Add cards from csv:<span style={{color: "#777777", marginLeft: "0.5rem"}}>(delimiter ';' one card per line)</span></h3>
-      <BatchNewCards boxId={id} onNewCards={handleNewCards}/>
       <div className="card-list-header">
         <h3>Cards:</h3>
         <GoZap size="1.25rem" onClick={() => handleResetBox()} className="reset-box-button" />
