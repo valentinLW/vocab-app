@@ -2,14 +2,16 @@ import { useState, useEffect, useCallback } from "react"
 import { APIgetMasteries, APIupdateMastery } from "../../api/API";
 import './Mastery.css'
 import { MasteryButton } from "./MasteryButton";
+import { Card } from "../common/Card";
 import { colors } from "../../colors"
 import { Nav } from "../common/Nav";
 import { AudioPlayer } from "../common/AudioPlayer";
-import { GoGear } from "react-icons/go";
+import { GoGear, GoListUnordered } from "react-icons/go";
 
 export function Mastery() {
   const [masteries, setMasteries] = useState([]);
   const [answerVisible, setAnswerVisible] = useState(false)
+  const [reverse, setReverse] = useState(Math.random() < 0.5);
 
   useEffect(() => {
     APIgetMasteries().then(({masteries}) => {
@@ -59,18 +61,17 @@ export function Mastery() {
 
   return (
     <div className="mastery">
-     <Nav header="Mastery" link="mastery/manage" icon={<GoGear/>}/>
+     <Nav leftLink="/" leftIcon={<GoListUnordered/>} header="mastery" rightLink="mastery/manage" rightIcon={<GoGear/>}/>
       {masteries.length > 0 && <>
-        <p className="mastery-prompt">{masteries[0].to}</p>
+        <Card card={masteries[0]} reverse={reverse} answered={answerVisible}/>
         {!answerVisible &&
         <>
         <div className="reveal-button" onClick={showAnswer}>Show Answer</div>
-        <AudioPlayer url={masteries[0].audio} playOnStart={true} display={false}/>
         </>}
       </>}
 
       {answerVisible && <>
-        <p className="mastery-answer">{masteries[0]?.from}</p>
+        <AudioPlayer url={masteries[0].audio} playOnStart={true} display={false}/>
         <div className="mastery-buttons">
           <MasteryButton text={"perfect"} color={colors.green} onClick={() => handleNext(5)}/>
           <MasteryButton text={"easy"} color={colors.green} onClick={() => handleNext(4)}/>

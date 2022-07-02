@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router";
 import { Redirect } from "react-router-dom";
-import { Card } from "./Card";
+import { Card } from "../common/Card";
 import { Quiz } from "./Quiz";
 import { Result } from "./Result";
 import { APIgetBox, APIupdateCard } from "../../api/API";
@@ -52,9 +52,9 @@ export function Box() {
     setAnswered(false);
   }
 
-  if (cards.length === 0) {
-    return (<Redirect to={`/boxes/${id}/manage`}/>)
-  }
+  // if (cards.length === 0) {
+  //   return (<Redirect to={`/boxes/${id}/manage`}/>)
+  // }
 
   return (
     <div className="box">

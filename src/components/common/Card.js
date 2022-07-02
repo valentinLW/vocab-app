@@ -7,7 +7,7 @@ export function Card({card, reverse=false, answered}) {
  
   return (
     <div className="card" style={{backgroundColor: colors[card.color]}}>
-      <p className="card-level">{card.level}</p>
+      <p className="card-level" style={{visibility: card.level? "visible" : "hidden"}}>{card.level}</p>
       <div className="card-prompt">
         <p className="card-question">{cardQuestion}</p>
         <p className="card-definition">{card.definition}</p>

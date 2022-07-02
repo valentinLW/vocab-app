@@ -2,13 +2,6 @@
   margin-top: 2rem;
 }
 
-.box {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  text-align: center;
-}
-
 .box-links {
   display: flex;
   justify-content: space-between;
