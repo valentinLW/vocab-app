@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react"
 import { APIdeleteCard, APIgetBox, APIresetBox } from "../../api/API";
-import { GoArrowBoth, GoLinkExternal, GoZap } from "react-icons/go";
+import { GoArrowBoth, GoLinkExternal, GoZap, GoListUnordered } from "react-icons/go";
 import { colors } from "../../colors"
 import { NewCardForm } from "./NewCardForm";
 import './BoxManager.css'
@@ -47,7 +47,7 @@ export function BoxManager() {
 
   return(
     <div className="box-manager">
-      <Nav link={`/boxes/${id}`} icon={<GoLinkExternal/>} header={box.box.name}/>
+      <Nav leftLink={"/"} leftIcon={<GoListUnordered/>} header={box.box.name} rightLink={`/boxes/${id}`} rightIcon={<GoLinkExternal/>}/>
 
       <h3>Add card:</h3>
       <NewCardForm boxId={id} onNewCard={handleNewCard}/>
