@@ -1,17 +1,16 @@
 import { Link } from "react-router-dom";
-import { GoListUnordered } from "react-icons/go";
 import './Nav.css'
 
-export function Nav({link, icon, header}) {
+export function Nav({leftLink, leftIcon, rightLink, rightIcon, header}) {
 
   return(
       <div className="nav">
-        <Link to={"/"} className="nav-link">
-          <GoListUnordered/>
+        <Link to={leftLink} className="nav-link-left" style={{visibility: leftLink ? "visible" : "hidden"}}>
+          {leftIcon}
         </Link>
         <h1>{header}</h1>
-        <Link to={link || ""} className="nav-link" style={{visibility: link ? "visible" : "hidden"}}>
-          {icon || <GoListUnordered/>}
+        <Link to={rightLink} className="nav-link-right" style={{visibility: rightLink ? "visible" : "hidden"}}>
+          {rightIcon}
         </Link>
       </div>
   )

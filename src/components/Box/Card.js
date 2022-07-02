@@ -9,7 +9,7 @@ export function Card({card, reverse=false, answered}) {
     <div className="card" style={{backgroundColor: colors[card.color]}}>
       <div className="card-prompt">
         <p className="card-question">{cardQuestion}</p>
-        <p className="card-hint">{card.hint}</p>
+        <p className="card-definition">{card.definition}</p>
         <p className="card-answer" style={{visibility: answered? "visible" : "hidden"}}>{cardAnswer}</p>
       </div>
     </div>

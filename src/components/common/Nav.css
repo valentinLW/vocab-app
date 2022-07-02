@@ -5,11 +5,15 @@
   width: 100%;
 }
 
-.nav-link {
-  margin: 0 2rem;
+.nav-link-left {
+  margin-right: 2rem;
 }
 
-.nav-link > svg {
+.nav-link-right {
+  margin-left: 2rem;
+}
+
+.nav-link-left > svg, .nav-link-right > svg {
   height: 2rem;
   width: 2rem;
 }

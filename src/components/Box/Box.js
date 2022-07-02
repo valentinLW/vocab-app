@@ -4,7 +4,7 @@ import { Card } from "./Card";
 import { Quiz } from "./Quiz";
 import { Result } from "./Result";
 import { APIgetBox, APIupdateCard } from "../../api/API";
-import { GoGear } from "react-icons/go";
+import { GoGear, GoListUnordered } from "react-icons/go";
 import './Box.css'
 import { Nav } from "../common/Nav";
 
@@ -12,10 +12,12 @@ export function Box() {
   let {id} = useParams()
   id = parseInt(id)
   const [cards, setCards] = useState([]);
+  const [boxName, setBoxName] = useState("");
 
   useEffect(() => {
-    APIgetBox(id).then(({cards}) => {
+    APIgetBox(id).then(({cards, box}) => {
       setCards(cards);
+      setBoxName(box.name);
     });
   }, [id]);
 
@@ -55,7 +57,7 @@ export function Box() {
 
   return (
     <div className="box">
-    <Nav link={`/boxes/${id}/manage`} icon={<GoGear/>}/>
+    <Nav leftLink={"/"} leftIcon={<GoListUnordered/>} header={boxName} rightLink={`/boxes/${id}/manage`} rightIcon={<GoGear/>}/>
       <div className="box-game">
         {currentCard && <Card card={currentCard} reverse={reverse} answered={answered}/>}
         {(currentCard && !answered) && <Quiz card={currentCard} onAnswer={handleAnswer} answered={answered} reverse={reverse}/>}
